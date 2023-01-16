@@ -5,16 +5,16 @@
 
 import Foundation
 
-struct AccessToken: Codable, Equatable {
-    enum CodingKeys: String, CodingKey {
+public struct AccessToken: Codable, Equatable {
+    public enum CodingKeys: String, CodingKey {
         case access
         case accessExpires = "access_expires"
         case refresh
         case refreshExpires = "refresh_expires"
     }
     
-    var access: String
-    var accessExpires: Int
-    var refresh: String?
-    var refreshExpires: Int?
+    public var access: String
+    public var accessExpires: Int
+    public var refresh: String?
+    public var refreshExpires: Int?
 }

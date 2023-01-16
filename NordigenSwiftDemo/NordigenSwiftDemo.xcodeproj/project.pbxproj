@@ -1,0 +1,382 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DE0BFCB1296ECD1C00E10B07 /* NordigenSwiftDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0BFCB0296ECD1C00E10B07 /* NordigenSwiftDemoApp.swift */; };
+		DE0BFCB3296ECD1C00E10B07 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0BFCB2296ECD1C00E10B07 /* ContentView.swift */; };
+		DE0BFCB5296ECD1D00E10B07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE0BFCB4296ECD1D00E10B07 /* Assets.xcassets */; };
+		DE0BFCB8296ECD1D00E10B07 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE0BFCB7296ECD1D00E10B07 /* Preview Assets.xcassets */; };
+		DE9022582974A9C500811627 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9022572974A9C500811627 /* ContentViewModel.swift */; };
+		DE90225B2974AC2C00811627 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE90225A2974AC2C00811627 /* Constants.swift */; };
+		DE90225F2974AE6400811627 /* NordigenSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DE90225E2974AE6400811627 /* NordigenSwift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DE0BFCAD296ECD1C00E10B07 /* NordigenSwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NordigenSwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE0BFCB0296ECD1C00E10B07 /* NordigenSwiftDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NordigenSwiftDemoApp.swift; sourceTree = "<group>"; };
+		DE0BFCB2296ECD1C00E10B07 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DE0BFCB4296ECD1D00E10B07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DE0BFCB7296ECD1D00E10B07 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DE9022572974A9C500811627 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		DE90225A2974AC2C00811627 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		DE90225C2974AD0200811627 /* NordigenSwift */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = NordigenSwift; path = ..; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DE0BFCAA296ECD1C00E10B07 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE90225F2974AE6400811627 /* NordigenSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DE0BFCA4296ECD1C00E10B07 = {
+			isa = PBXGroup;
+			children = (
+				DE90225C2974AD0200811627 /* NordigenSwift */,
+				DE0BFCAF296ECD1C00E10B07 /* NordigenSwiftDemo */,
+				DE0BFCAE296ECD1C00E10B07 /* Products */,
+				DE90225D2974AE6400811627 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		DE0BFCAE296ECD1C00E10B07 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DE0BFCAD296ECD1C00E10B07 /* NordigenSwiftDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DE0BFCAF296ECD1C00E10B07 /* NordigenSwiftDemo */ = {
+			isa = PBXGroup;
+			children = (
+				DE9022592974AC2500811627 /* Common */,
+				DE0BFCB0296ECD1C00E10B07 /* NordigenSwiftDemoApp.swift */,
+				DE9022572974A9C500811627 /* ContentViewModel.swift */,
+				DE0BFCB2296ECD1C00E10B07 /* ContentView.swift */,
+				DE0BFCB4296ECD1D00E10B07 /* Assets.xcassets */,
+				DE0BFCB6296ECD1D00E10B07 /* Preview Content */,
+			);
+			path = NordigenSwiftDemo;
+			sourceTree = "<group>";
+		};
+		DE0BFCB6296ECD1D00E10B07 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				DE0BFCB7296ECD1D00E10B07 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DE9022592974AC2500811627 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				DE90225A2974AC2C00811627 /* Constants.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		DE90225D2974AE6400811627 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DE0BFCAC296ECD1C00E10B07 /* NordigenSwiftDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE0BFCBB296ECD1D00E10B07 /* Build configuration list for PBXNativeTarget "NordigenSwiftDemo" */;
+			buildPhases = (
+				DE0BFCA9296ECD1C00E10B07 /* Sources */,
+				DE0BFCAA296ECD1C00E10B07 /* Frameworks */,
+				DE0BFCAB296ECD1C00E10B07 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NordigenSwiftDemo;
+			packageProductDependencies = (
+				DE90225E2974AE6400811627 /* NordigenSwift */,
+			);
+			productName = NordigenSwiftDemo;
+			productReference = DE0BFCAD296ECD1C00E10B07 /* NordigenSwiftDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DE0BFCA5296ECD1C00E10B07 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1410;
+				LastUpgradeCheck = 1410;
+				TargetAttributes = {
+					DE0BFCAC296ECD1C00E10B07 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+				};
+			};
+			buildConfigurationList = DE0BFCA8296ECD1C00E10B07 /* Build configuration list for PBXProject "NordigenSwiftDemo" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DE0BFCA4296ECD1C00E10B07;
+			productRefGroup = DE0BFCAE296ECD1C00E10B07 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DE0BFCAC296ECD1C00E10B07 /* NordigenSwiftDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DE0BFCAB296ECD1C00E10B07 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE0BFCB8296ECD1D00E10B07 /* Preview Assets.xcassets in Resources */,
+				DE0BFCB5296ECD1D00E10B07 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DE0BFCA9296ECD1C00E10B07 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE0BFCB3296ECD1C00E10B07 /* ContentView.swift in Sources */,
+				DE0BFCB1296ECD1C00E10B07 /* NordigenSwiftDemoApp.swift in Sources */,
+				DE9022582974A9C500811627 /* ContentViewModel.swift in Sources */,
+				DE90225B2974AC2C00811627 /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		DE0BFCB9296ECD1D00E10B07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DE0BFCBA296ECD1D00E10B07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DE0BFCBC296ECD1D00E10B07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"NordigenSwiftDemo/Preview Content\"";
+				DEVELOPMENT_TEAM = UN495CWDD6;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.raoulschwagmeier.nordigenswiftdemo.NordigenSwiftDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DE0BFCBD296ECD1D00E10B07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"NordigenSwiftDemo/Preview Content\"";
+				DEVELOPMENT_TEAM = UN495CWDD6;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.raoulschwagmeier.nordigenswiftdemo.NordigenSwiftDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DE0BFCA8296ECD1C00E10B07 /* Build configuration list for PBXProject "NordigenSwiftDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE0BFCB9296ECD1D00E10B07 /* Debug */,
+				DE0BFCBA296ECD1D00E10B07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DE0BFCBB296ECD1D00E10B07 /* Build configuration list for PBXNativeTarget "NordigenSwiftDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE0BFCBC296ECD1D00E10B07 /* Debug */,
+				DE0BFCBD296ECD1D00E10B07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DE90225E2974AE6400811627 /* NordigenSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NordigenSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = DE0BFCA5296ECD1C00E10B07 /* Project object */;
+}

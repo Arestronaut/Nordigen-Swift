@@ -1,3 +1,3 @@
-# Nordigen-Swift
+# Nordigen Swift
 
-A description of this package.
+A swift package for the Nordigen API.

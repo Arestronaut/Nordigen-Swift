@@ -18,3 +18,9 @@ public final class StatusCodeResponse: Error, Codable {
     public let type: String?
     public let statusCode: Int?
 }
+
+extension StatusCodeResponse: CustomStringConvertible {
+    public var description: String {
+        "- Detail: \(detail)\n- Summary: \(summary)\n- Type: \(String(describing: type))\n- StatusCode: \(String(describing: statusCode))"
+    }
+}

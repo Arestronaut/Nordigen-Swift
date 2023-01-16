@@ -36,7 +36,7 @@ public final class Endpoint {
         additionalHeaders: [String: String],
         queryParameters: [String: String]
     ) async throws -> OutputType {
-        let input = try JSONEncoder().encode(bodyData)
+        let input: Data = try JSONEncoder().encode(bodyData)
         
         let request = makeURLRequest(
             httpMethod: httpMethod,
@@ -89,7 +89,10 @@ public final class Endpoint {
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = httpMethod
-        request.httpBody = bodyData
+
+        if httpMethod != "GET" {
+            request.httpBody = bodyData
+        }
         
         var headers: [String: String] = [
             "accept": "application/json",
@@ -137,36 +140,6 @@ extension Endpoint {
             httpMethod: "GET",
             path: path,
             bodyData: EmptyInput(),
-            additionalHeaders: additionalHeaders,
-            queryParameters: queryParameters
-        )
-    }
-    
-    func `get`<InputType: Encodable>(
-        path: String,
-        input: InputType,
-        additionalHeaders: [String: String] = [:],
-        queryParameters: [String: String] = [:]
-    ) async throws {
-        let _: EmptyOutput = try await performRequest(
-            httpMethod: "GET",
-            path: path,
-            bodyData: input,
-            additionalHeaders: additionalHeaders,
-            queryParameters: queryParameters
-        )
-    }
-    
-    func `get`<OutputType: Decodable, InputType: Encodable>(
-        path: String,
-        input: InputType,
-        additionalHeaders: [String: String] = [:],
-        queryParameters: [String: String] = [:]
-    ) async throws -> OutputType {
-        try await performRequest(
-            httpMethod: "GET",
-            path: path,
-            bodyData: input,
             additionalHeaders: additionalHeaders,
             queryParameters: queryParameters
         )
