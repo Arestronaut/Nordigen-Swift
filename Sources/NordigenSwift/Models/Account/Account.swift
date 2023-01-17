@@ -6,7 +6,7 @@
 import Foundation
 
 public final class Account: Codable {
-    enum Status: String {
+    public enum Status: String {
         case discovered
         case processing
         case error
@@ -25,13 +25,13 @@ public final class Account: Codable {
         case ownerName = "owner_name"
     }
     
-    let id: String
-    let created: String
-    let lastAccessed: String
-    let iban: String
-    let institutionId: String
-    let status: (Status, String)?
-    let ownerName: String
+    public let id: String
+    public let created: String
+    public let lastAccessed: String
+    public let iban: String
+    public let institutionId: String
+    public let status: (Status, String)?
+    public let ownerName: String
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

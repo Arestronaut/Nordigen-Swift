@@ -11,9 +11,16 @@
 		DE0BFCB3296ECD1C00E10B07 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0BFCB2296ECD1C00E10B07 /* ContentView.swift */; };
 		DE0BFCB5296ECD1D00E10B07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE0BFCB4296ECD1D00E10B07 /* Assets.xcassets */; };
 		DE0BFCB8296ECD1D00E10B07 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE0BFCB7296ECD1D00E10B07 /* Preview Assets.xcassets */; };
+		DE0D83EB297583E000B1D2C2 /* InstitutionEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D83EA297583E000B1D2C2 /* InstitutionEntryView.swift */; };
+		DE0D83EE29758F0A00B1D2C2 /* DeepLinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D83ED29758F0A00B1D2C2 /* DeepLinkHandler.swift */; };
+		DE0D83F029758FB200B1D2C2 /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D83EF29758FB200B1D2C2 /* URL+.swift */; };
+		DE0D83F62975984D00B1D2C2 /* SandboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D83F52975984D00B1D2C2 /* SandboxView.swift */; };
+		DE0D83F82975986D00B1D2C2 /* SandboxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D83F72975986D00B1D2C2 /* SandboxViewModel.swift */; };
 		DE9022582974A9C500811627 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9022572974A9C500811627 /* ContentViewModel.swift */; };
 		DE90225B2974AC2C00811627 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE90225A2974AC2C00811627 /* Constants.swift */; };
 		DE90225F2974AE6400811627 /* NordigenSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DE90225E2974AE6400811627 /* NordigenSwift */; };
+		DEC63FA729754B7E00231E65 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEC63FA629754B7E00231E65 /* Localizable.strings */; };
+		DEC63FA92975516B00231E65 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC63FA82975516B00231E65 /* Loading.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,9 +29,17 @@
 		DE0BFCB2296ECD1C00E10B07 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DE0BFCB4296ECD1D00E10B07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE0BFCB7296ECD1D00E10B07 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DE0D83EA297583E000B1D2C2 /* InstitutionEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionEntryView.swift; sourceTree = "<group>"; };
+		DE0D83EC29758EC000B1D2C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		DE0D83ED29758F0A00B1D2C2 /* DeepLinkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandler.swift; sourceTree = "<group>"; };
+		DE0D83EF29758FB200B1D2C2 /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
+		DE0D83F52975984D00B1D2C2 /* SandboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxView.swift; sourceTree = "<group>"; };
+		DE0D83F72975986D00B1D2C2 /* SandboxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxViewModel.swift; sourceTree = "<group>"; };
 		DE9022572974A9C500811627 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		DE90225A2974AC2C00811627 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DE90225C2974AD0200811627 /* NordigenSwift */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = NordigenSwift; path = ..; sourceTree = "<group>"; };
+		DEC63FA629754B7E00231E65 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		DEC63FA82975516B00231E65 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,11 +75,11 @@
 		DE0BFCAF296ECD1C00E10B07 /* NordigenSwiftDemo */ = {
 			isa = PBXGroup;
 			children = (
+				DE0D83F12975964300B1D2C2 /* Scenes */,
+				DE0D83EC29758EC000B1D2C2 /* Info.plist */,
+				DEC63FA529754B6900231E65 /* Resources */,
 				DE9022592974AC2500811627 /* Common */,
 				DE0BFCB0296ECD1C00E10B07 /* NordigenSwiftDemoApp.swift */,
-				DE9022572974A9C500811627 /* ContentViewModel.swift */,
-				DE0BFCB2296ECD1C00E10B07 /* ContentView.swift */,
-				DE0BFCB4296ECD1D00E10B07 /* Assets.xcassets */,
 				DE0BFCB6296ECD1D00E10B07 /* Preview Content */,
 			);
 			path = NordigenSwiftDemo;
@@ -78,10 +93,41 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		DE0D83F12975964300B1D2C2 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				DEC63FA82975516B00231E65 /* Loading.swift */,
+				DE0D83EA297583E000B1D2C2 /* InstitutionEntryView.swift */,
+				DE0D83F42975983B00B1D2C2 /* SandboxInstitution */,
+				DE0D83F22975964E00B1D2C2 /* Main */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		DE0D83F22975964E00B1D2C2 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				DE9022572974A9C500811627 /* ContentViewModel.swift */,
+				DE0BFCB2296ECD1C00E10B07 /* ContentView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		DE0D83F42975983B00B1D2C2 /* SandboxInstitution */ = {
+			isa = PBXGroup;
+			children = (
+				DE0D83F52975984D00B1D2C2 /* SandboxView.swift */,
+				DE0D83F72975986D00B1D2C2 /* SandboxViewModel.swift */,
+			);
+			path = SandboxInstitution;
+			sourceTree = "<group>";
+		};
 		DE9022592974AC2500811627 /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				DE90225A2974AC2C00811627 /* Constants.swift */,
+				DE0D83ED29758F0A00B1D2C2 /* DeepLinkHandler.swift */,
+				DE0D83EF29758FB200B1D2C2 /* URL+.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -91,6 +137,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DEC63FA529754B6900231E65 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DE0BFCB4296ECD1D00E10B07 /* Assets.xcassets */,
+				DEC63FA629754B7E00231E65 /* Localizable.strings */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE0BFCB8296ECD1D00E10B07 /* Preview Assets.xcassets in Resources */,
+				DEC63FA729754B7E00231E65 /* Localizable.strings in Resources */,
 				DE0BFCB5296ECD1D00E10B07 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -167,9 +223,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE0BFCB3296ECD1C00E10B07 /* ContentView.swift in Sources */,
+				DE0D83F62975984D00B1D2C2 /* SandboxView.swift in Sources */,
 				DE0BFCB1296ECD1C00E10B07 /* NordigenSwiftDemoApp.swift in Sources */,
+				DE0D83EB297583E000B1D2C2 /* InstitutionEntryView.swift in Sources */,
+				DE0D83F029758FB200B1D2C2 /* URL+.swift in Sources */,
+				DEC63FA92975516B00231E65 /* Loading.swift in Sources */,
 				DE9022582974A9C500811627 /* ContentViewModel.swift in Sources */,
 				DE90225B2974AC2C00811627 /* Constants.swift in Sources */,
+				DE0D83F82975986D00B1D2C2 /* SandboxViewModel.swift in Sources */,
+				DE0D83EE29758F0A00B1D2C2 /* DeepLinkHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +363,7 @@
 				DEVELOPMENT_TEAM = UN495CWDD6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NordigenSwiftDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -313,9 +376,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.raoulschwagmeier.nordigenswiftdemo.NordigenSwiftDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -330,6 +396,7 @@
 				DEVELOPMENT_TEAM = UN495CWDD6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NordigenSwiftDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -342,9 +409,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.raoulschwagmeier.nordigenswiftdemo.NordigenSwiftDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

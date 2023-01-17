@@ -4,6 +4,9 @@
 //
 
 import Foundation
+import os
+
+private let logger = Logger(subsystem: "nordigen_swift", category: "Endpoint")
 
 public final class Endpoint {
     struct EmptyInput: Encodable {}
@@ -12,6 +15,7 @@ public final class Endpoint {
     public enum NetworkingError: Error {
         case faultyResponse
         case requestFailure(StatusCodeResponse)
+        case unkownRequestFailure(String)
         case underlyingError(Error)
     }
     
@@ -45,21 +49,23 @@ public final class Endpoint {
             additionalHeaders: additionalHeaders,
             queryParameters: queryParameters
         )
+
+        logger.debug("\(request.debugDescription)")
         
-        do {
-            let (outputData, response) = try await httpRequestExecuter.data(for: request)
-            
-            guard let httpResponse = response as? HTTPURLResponse else { throw NetworkingError.faultyResponse }
-            
-            switch httpResponse.statusCode {
-            case 200..<300:
-                return try JSONDecoder().decode(OutputType.self, from: outputData)
-            default:
-                let statusCodeResponse = try JSONDecoder().decode(StatusCodeResponse.self, from: outputData)
+        let (outputData, response) = try await httpRequestExecuter.data(for: request)
+
+        guard let httpResponse = response as? HTTPURLResponse else { throw NetworkingError.faultyResponse }
+
+        switch httpResponse.statusCode {
+        case 200..<300:
+            return try JSONDecoder().decode(OutputType.self, from: outputData)
+        default:
+            if let statusCodeResponse = try? JSONDecoder().decode(StatusCodeResponse.self, from: outputData) {
                 throw NetworkingError.requestFailure(statusCodeResponse)
+            } else {
+                let failureStrig = String(data: outputData, encoding: .utf8) ?? "Something went wrong"
+                throw NetworkingError.unkownRequestFailure(failureStrig)
             }
-        } catch {
-            throw NetworkingError.underlyingError(error)
         }
     }
     
@@ -100,7 +106,7 @@ public final class Endpoint {
         ]
         
         if let bearerToken {
-            headers["Authentication"] = "Bearer \(bearerToken)"
+            headers["Authorization"] = "Bearer \(bearerToken)"
         }
         
         if !additionalHeaders.isEmpty {

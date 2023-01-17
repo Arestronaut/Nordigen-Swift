@@ -26,7 +26,7 @@ public final class AccountsAPI {
         guard UUID(uuidString: id) != nil else { throw NordigenError.preconditionError(message: "Provided `id` is not a valid UUID") }
         
         return try await endpoint.get(
-            path: "accounts/\(id)/balances"
+            path: "accounts/\(id)/balances/"
         )
     }
     
@@ -35,19 +35,28 @@ public final class AccountsAPI {
         guard UUID(uuidString: id) != nil else { throw NordigenError.preconditionError(message: "Provided `id` is not a valid UUID") }
         
         return try await endpoint.get(
-            path: "accounts/\(id)/details"
+            path: "accounts/\(id)/details/"
         )
     }
-    
+
+    public func transactions(id: String) async throws -> TransactionsResponse {
+        guard !id.isEmpty else { throw NordigenError.preconditionError(message: "Provided `id` is empty") }
+        guard UUID(uuidString: id) != nil else { throw NordigenError.preconditionError(message: "Provided `id` is not a valid UUID") }
+
+        return try await endpoint.get(
+            path: "accounts/\(id)/transactions/"
+        )
+    }
+
     public func transactions(id: String, from: Date, to: Date) async throws -> TransactionsResponse {
         guard !id.isEmpty else { throw NordigenError.preconditionError(message: "Provided `id` is empty") }
         guard UUID(uuidString: id) != nil else { throw NordigenError.preconditionError(message: "Provided `id` is not a valid UUID") }
         
         return try await endpoint.get(
-            path: "accounts/\(id)/transactions",
+            path: "accounts/\(id)/transactions/",
             queryParameters: [
-                "from": DateFormatter.isoDateFormatter.string(from: from),
-                "to": DateFormatter.isoDateFormatter.string(from: to)
+                "date_from": DateFormatters.simpleDateFormatter.string(from: from),
+                "date_to": DateFormatters.simpleDateFormatter.string(from: to)
             ]
         )
     }
@@ -55,14 +64,14 @@ public final class AccountsAPI {
     public func transactions(id: String, from: String, to: String) async throws -> TransactionsResponse {
         guard !id.isEmpty else { throw NordigenError.preconditionError(message: "Provided `id` is empty") }
         guard UUID(uuidString: id) != nil else { throw NordigenError.preconditionError(message: "Provided `id` is not a valid UUID") }
-        guard DateFormatter.isoDateFormatter.date(from: from) != nil else { throw NordigenError.preconditionError(message: "`from` is not in ISO8601 format") }
-        guard DateFormatter.isoDateFormatter.date(from: to) != nil else { throw NordigenError.preconditionError(message: "`to` is not in ISO8601 format") }
+        guard DateFormatters.simpleDateFormatter.date(from: from) != nil else { throw NordigenError.preconditionError(message: "`from` is not correctly formatted: Use Format YYYY-MM-DD") }
+        guard DateFormatters.simpleDateFormatter.date(from: to) != nil else { throw NordigenError.preconditionError(message: "`to` is not correctly formatted: Use Format YYYY-MM-DD") }
         
         return try await endpoint.get(
-            path: "accounts/\(id)/transactions",
+            path: "accounts/\(id)/transactions/",
             queryParameters: [
-                "from": from,
-                "to": to
+                "date_from": from,
+                "date_to": to
             ]
         )
     }

@@ -17,16 +17,16 @@ public struct RequisitionWriteRequest: Encodable {
         case redirect_immediate = "redirect_immediate"
     }
     
-    let institutionId: String
-    let redirect: String
-    let agreement: String?
-    let reference: String?
-    let userLanguage: String?
-    let ssn: String?
-    let accountSelection: Bool?
-    let redirectImmediate: Bool?
+    public let institutionId: String
+    public let redirect: String
+    public let agreement: String?
+    public let reference: String?
+    public let userLanguage: String?
+    public let ssn: String?
+    public let accountSelection: Bool?
+    public let redirectImmediate: Bool?
     
-    init(institutionId: String, redirect: String, agreement: String? = nil, reference: String? = nil, userLanguage: String? = nil, ssn: String? = nil, accountSelection: Bool? = nil, redirectImmediate: Bool? = nil) {
+    public init(institutionId: String, redirect: String, agreement: String? = nil, reference: String? = nil, userLanguage: String? = nil, ssn: String? = nil, accountSelection: Bool? = nil, redirectImmediate: Bool? = nil) {
         self.institutionId = institutionId
         self.redirect = redirect
         self.agreement = agreement

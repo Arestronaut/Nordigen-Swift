@@ -35,7 +35,7 @@ public struct EndUserAgreement: Codable, Equatable {
         
         id = try container.decode(String.self, forKey: .id)
         
-        if let _created = DateFormatter.isoDateFormatter.date(from: try container.decode(String.self, forKey: .created)) {
+        if let _created = DateFormatters.isoDateFormatter.date(from: try container.decode(String.self, forKey: .created)) {
             self.created = _created
         } else {
             preconditionFailure("`Created` couldn't be created. It might be the wrong format.")
@@ -45,7 +45,7 @@ public struct EndUserAgreement: Codable, Equatable {
         accessValidForDays = try container.decode(Int.self, forKey: .accessValidForDays)
         accessScope = try container.decode(Set<AccessScope>.self, forKey: .accessScope)
         
-        if let _accepted = DateFormatter.isoDateFormatter.date(from: try container.decode(String.self, forKey: .id)) {
+        if let _accepted = DateFormatters.isoDateFormatter.date(from: try container.decode(String.self, forKey: .id)) {
             self.accepted = _accepted
         } else {
             preconditionFailure("`Accepted` couldn't be created. It might be the wrong format.")
@@ -58,14 +58,14 @@ public struct EndUserAgreement: Codable, Equatable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.id, forKey: .id)
         
-        let createdString = DateFormatter.isoDateFormatter.string(from: self.created)
+        let createdString = DateFormatters.isoDateFormatter.string(from: self.created)
         try container.encode(createdString, forKey: .created)
         
         try container.encode(maxHistoricalDays, forKey: .maxHistoricalDays)
         try container.encode(accessValidForDays, forKey: .accessValidForDays)
         try container.encode(accessScope, forKey: .accessScope)
         
-        let acceptedString = DateFormatter.isoDateFormatter.string(from: accepted)
+        let acceptedString = DateFormatters.isoDateFormatter.string(from: accepted)
         try container.encode(acceptedString, forKey: .accepted)
         
         try container.encode(institutionId, forKey: .institutionId)

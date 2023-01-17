@@ -5,8 +5,8 @@
 
 import Foundation
 
-public struct Transaction: Codable {
-    public struct DebtorAccount: Codable {
+public struct Transaction: Codable, Hashable, Equatable {
+    public struct DebtorAccount: Codable, Hashable, Equatable {
         public let iban: String
     }
     

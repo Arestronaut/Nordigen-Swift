@@ -3,4 +3,4 @@
 //  MIT license, see LICENSE file for details
 //
 
-public struct NordigenSwift {}
+//public struct NordigenSwift {}

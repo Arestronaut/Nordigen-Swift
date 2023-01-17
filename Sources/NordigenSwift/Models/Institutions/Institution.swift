@@ -15,10 +15,10 @@ public final class Institution: Codable {
         case logo
     }
     
-    let id: String
-    let name: String
-    let bic: String
-    let transactionTotalDays: String
-    let countries: [String]
-    let logo: String
+    public let id: String
+    public let name: String
+    public let bic: String
+    public let transactionTotalDays: String
+    public let countries: [String]
+    public let logo: String
 }

@@ -6,8 +6,8 @@
 import Foundation
 
 public struct MonetaryAmount: Codable, CustomStringConvertible, Equatable, Hashable {
-    let amount: String
-    let currency: String
+    public let amount: String
+    public let currency: String
     
     public var description: String {
         "\(amount)\(currency)"

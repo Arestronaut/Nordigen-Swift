@@ -22,7 +22,7 @@ public struct Requisition: Codable, Equatable {
         case redirectImmediate
     }
     
-    enum Status: String, Codable {
+    public enum Status: String, Codable {
         case created = "CR"
         case givingConsent = "GC"
         case undergoingAuthentication = "UA"
@@ -34,19 +34,19 @@ public struct Requisition: Codable, Equatable {
         case expired = "EX"
     }
     
-    let id: String
-    let created: Date?
-    let redirect: String?
-    let status: Status
-    let institutionId: String
-    let agreement: String
-    let reference: String
-    let accounts: [String]
-    let userLanguage: String?
-    let link: String
-    let ssn: String?
-    let accountSelection: Bool?
-    let redirectImmediate: Bool?
+    public let id: String
+    public let created: Date?
+    public let redirect: String?
+    public let status: Status
+    public let institutionId: String
+    public let agreement: String
+    public let reference: String
+    public let accounts: [String]
+    public let userLanguage: String?
+    public let link: String
+    public let ssn: String?
+    public let accountSelection: Bool?
+    public let redirectImmediate: Bool?
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -55,7 +55,7 @@ public struct Requisition: Codable, Equatable {
         
         var created: Date? = nil
         if let _created = try container.decodeIfPresent(String.self, forKey: .created) {
-            created = DateFormatter.isoDateFormatter.date(from: _created)
+            created = DateFormatters.isoDateFormatter.date(from: _created)
         }
         
         self.created = created
@@ -77,7 +77,7 @@ public struct Requisition: Codable, Equatable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         if let created {
-            try container.encode(DateFormatter.isoDateFormatter.string(from: created), forKey: .created)
+            try container.encode(DateFormatters.isoDateFormatter.string(from: created), forKey: .created)
         } else {
             try container.encode("", forKey: .created)
         }

@@ -5,9 +5,10 @@
 
 import Foundation
 
-public struct Balance: Codable {
+public struct Balance: Codable, Equatable, Hashable {
     public let balanceAmount: MonetaryAmount
     public let balanceType: String
+    // TODO: Use Date
     public let referenceDate: String
 }
 

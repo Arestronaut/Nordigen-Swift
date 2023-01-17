@@ -5,6 +5,11 @@
 
 import Foundation
 
-enum DateFormatter {
+enum DateFormatters {
     static let isoDateFormatter = ISO8601DateFormatter()
+    static let simpleDateFormatter: DateFormatter = {
+        let result = DateFormatter()
+        result.dateFormat = "YYYY-MM-DD"
+        return result
+    }()
 }

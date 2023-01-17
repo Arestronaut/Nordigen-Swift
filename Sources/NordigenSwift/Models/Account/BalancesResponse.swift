@@ -6,5 +6,5 @@
 import Foundation
 
 public struct BalancesResponse: Codable {
-    let balances: [Balance]
+    public let balances: [Balance]
 }

@@ -10,8 +10,9 @@ import SwiftUI
 
 @main
 struct NordigenSwiftDemoApp: App {
-    @AppStorage(Constants.Keys.authenticationToken)
-    var authenticationToken: AccessToken?
+    @AppStorage(Constants.Keys.authenticationToken) var authenticationToken: AccessToken?
+
+    @StateObject var deepLinkHandler = DeepLinkHandler()
 
     let nordigenClient: NordigenClient
 
@@ -26,6 +27,10 @@ struct NordigenSwiftDemoApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(viewModel: .init(nordigenClient: nordigenClient))
+                .environmentObject(deepLinkHandler)
+                .onOpenURL { url in
+                    deepLinkHandler.handle(link: url)
+                }
         }
     }
 }
@@ -44,4 +49,6 @@ extension RawRepresentable where Self: Codable {
     }
 }
 
+extension Date: RawRepresentable {}
 extension AccessToken: RawRepresentable {}
+extension Requisition: RawRepresentable {}

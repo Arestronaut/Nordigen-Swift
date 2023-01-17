@@ -6,6 +6,17 @@
 import Foundation
 
 public struct TransactionsResponse: Codable {
-    public let booked: [Transaction]
-    public let pending: [Transaction]
+    struct BookedAndPendingTransactions: Codable {
+        let booked: [Transaction]
+        let pending: [Transaction]
+    }
+
+    private let transactions: BookedAndPendingTransactions
+
+    public var booked: [Transaction] { transactions.booked }
+    public var pending: [Transaction] { transactions.pending }
+
+    init() {
+        self.transactions = .init(booked: [], pending: [])
+    }
 }

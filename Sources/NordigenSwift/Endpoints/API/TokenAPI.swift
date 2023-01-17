@@ -14,14 +14,14 @@ public final class TokenAPI {
     
     public func new(secretId: String, secretKey: String) async throws -> AccessToken {
         try await endpoint.post(
-            path: "token/new",
+            path: "token/new/",
             input: ["secret_id": secretId, "secret_key": secretKey]
         )
     }
     
     public func refresh(token: String) async throws -> AccessToken {
         try await endpoint.post(
-            path: "token/refresh",
+            path: "token/refresh/",
             input: ["refresh": token]
         )
     }

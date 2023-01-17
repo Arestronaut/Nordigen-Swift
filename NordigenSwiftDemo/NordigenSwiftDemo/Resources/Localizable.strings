@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  NordigenSwiftDemo
+
+  Created by Raoul Schwagmeier on 16.01.23.
+  
+*/
+
+"content_view.is_authentication_in_progress.alert.title" = "Authenticating";
+"content_view.is_loading_institutions.alert.title" = "Loading Institutions";
+"content_view.connecting_to_sandbox.alert.title" = "Connecting to Sandbox";
+"sandbox_view.is_loading_account.alert.title" = "Loading Account";
+"sandbox_view.is_loading_balances.alert.title" = "Loading Balances";
+"sandbox_view.is_loading_transactions.alert.title" = "Loading Transactions";
+
