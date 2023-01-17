@@ -5,7 +5,7 @@
 
 import Foundation
 
-public struct EndUserAgreementWriteRequest: Codable, Equatable {
+public struct EndUserAgreementWriteRequest: Codable, Hashable, Equatable {
     enum CodingKeys: String, CodingKey {
         case id
         case created
@@ -16,10 +16,10 @@ public struct EndUserAgreementWriteRequest: Codable, Equatable {
         case institutionId = "institution_id"
     }
     
-    let maxHistoricalDays: Int?
-    let accessValidForDays: Int?
-    let accessScope: Set<EndUserAgreement.AccessScope>?
-    let institutionId: String
+    public let maxHistoricalDays: Int?
+    public let accessValidForDays: Int?
+    public let accessScope: Set<EndUserAgreement.AccessScope>?
+    public let institutionId: String
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

@@ -5,7 +5,7 @@
 
 import Foundation
 
-public struct AccountDetail: Codable {
+public struct AccountDetail: Codable, Hashable, Equatable {
     public let resourceId: String
     public let lban: String
     public let currency: String

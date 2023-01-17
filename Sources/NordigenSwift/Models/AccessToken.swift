@@ -5,7 +5,7 @@
 
 import Foundation
 
-public struct AccessToken: Codable, Equatable {
+public struct AccessToken: Codable, Hashable, Equatable {
     public enum CodingKeys: String, CodingKey {
         case access
         case accessExpires = "access_expires"

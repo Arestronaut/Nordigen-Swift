@@ -5,8 +5,8 @@
 
 import Foundation
 
-public struct TransactionsResponse: Codable {
-    struct BookedAndPendingTransactions: Codable {
+public struct TransactionsResponse: Codable, Hashable, Equatable {
+    struct BookedAndPendingTransactions: Codable, Hashable, Equatable {
         let booked: [Transaction]
         let pending: [Transaction]
     }

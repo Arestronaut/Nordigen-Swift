@@ -5,8 +5,8 @@
 
 import Foundation
 
-public struct EndUserAgreement: Codable, Equatable {
-    enum AccessScope: String, Codable {
+public struct EndUserAgreement: Codable, Hashable, Equatable {
+    public enum AccessScope: String, Codable, Hashable, Equatable {
         case balances
         case details
         case transactions
@@ -22,13 +22,13 @@ public struct EndUserAgreement: Codable, Equatable {
         case institutionId = "institution_id"
     }
     
-    let id: String
-    let created: Date
-    let maxHistoricalDays: Int
-    let accessValidForDays: Int
-    let accessScope: Set<AccessScope>
-    let accepted: Date
-    let institutionId: String
+    public let id: String
+    public let created: Date
+    public let maxHistoricalDays: Int
+    public let accessValidForDays: Int
+    public let accessScope: Set<AccessScope>
+    public let accepted: Date
+    public let institutionId: String
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

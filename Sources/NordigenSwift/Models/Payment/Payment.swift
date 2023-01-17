@@ -5,9 +5,9 @@
 
 import Foundation
 
-public struct Payment: Codable {
+public struct Payment: Codable, Hashable, Equatable {
     // MARK: - Subtypes
-    public enum Status: String, Codable {
+    public enum Status: String, Codable, Hashable, Equatable {
         case INIT
         case ERRE
         case ERRS
@@ -27,20 +27,20 @@ public struct Payment: Codable {
         case PART
     }
     
-    public enum Product: String, Codable {
+    public enum Product: String, Codable, Hashable, Equatable {
         case T2P
         case SCT
         case ISCT
         case CBCT
     }
     
-    public enum `Type`: String, Codable {
+    public enum `Type`: String, Codable, Hashable, Equatable {
         case single = "single-payment"
         case bulk = "bulk-payment"
         case periodic = "periodic-payment"
     }
     
-    public struct DebtorAccount: Codable {
+    public struct DebtorAccount: Codable, Hashable, Equatable {
         enum CodingKeys: String, CodingKey {
             case currency
             case account

@@ -5,8 +5,8 @@
 
 import Foundation
 
-public final class Account: Codable {
-    public enum Status: String {
+public struct Account: Codable, Hashable, Equatable {
+    public enum Status: String, Hashable, Equatable {
         case discovered
         case processing
         case error
@@ -68,6 +68,28 @@ public final class Account: Codable {
         if let status {
             try container.encode([status.0.rawValue.uppercased(): status.1], forKey: .status)
         }
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(created)
+        hasher.combine(lastAccessed)
+        hasher.combine(iban)
+        hasher.combine(institutionId)
+        if let status {
+            hasher.combine(status.0)
+            hasher.combine(status.1)
+        }
+    }
+
+    public static func ==(lhs: Account, rhs: Account) -> Bool {
+        lhs.id == rhs.id &&
+        lhs.created == rhs.created &&
+        lhs.lastAccessed == rhs.lastAccessed &&
+        lhs.iban == rhs.iban &&
+        lhs.institutionId == rhs.institutionId &&
+        lhs.status?.0 == rhs.status?.0 &&
+        lhs.status?.1 == rhs.status?.1
     }
 }
 

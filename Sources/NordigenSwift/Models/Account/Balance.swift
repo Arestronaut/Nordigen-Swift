@@ -5,7 +5,7 @@
 
 import Foundation
 
-public struct Balance: Codable, Equatable, Hashable {
+public struct Balance: Codable, Hashable, Equatable {
     public let balanceAmount: MonetaryAmount
     public let balanceType: String
     // TODO: Use Date

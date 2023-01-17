@@ -5,7 +5,7 @@
 
 import Foundation
 
-public final class Paginated<T: Codable>: Codable {
+public struct Paginated<T: Codable>: Codable {
     public let count: Int
     public let next: URL?
     public let previous: URL?

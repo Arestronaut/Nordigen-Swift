@@ -5,6 +5,6 @@
 
 import Foundation
 
-public struct AccountDetailResponse: Codable {
+public struct AccountDetailResponse: Codable, Hashable, Equatable {
     public let account: AccountDetail
 }

@@ -5,7 +5,7 @@
 
 import Foundation
 
-public struct Requisition: Codable, Equatable {
+public struct Requisition: Codable, Hashable, Equatable {
     enum CodingKeys: String, CodingKey {
         case id
         case created
@@ -22,7 +22,7 @@ public struct Requisition: Codable, Equatable {
         case redirectImmediate
     }
     
-    public enum Status: String, Codable {
+    public enum Status: String, Codable, Hashable, Equatable {
         case created = "CR"
         case givingConsent = "GC"
         case undergoingAuthentication = "UA"

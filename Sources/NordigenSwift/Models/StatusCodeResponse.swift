@@ -5,7 +5,7 @@
 
 import Foundation
 
-public final class StatusCodeResponse: Error, Codable {
+public struct StatusCodeResponse: Error, Codable, Hashable, Equatable {
     enum CodingKeys: String, CodingKey {
         case detail
         case summary

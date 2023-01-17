@@ -5,12 +5,12 @@
 
 import Foundation
 
-public final class EndUserAgreementAcceptance: Codable {
+public struct EndUserAgreementAcceptance: Codable, Hashable, Equatable {
     enum CodingKeys: String, CodingKey {
         case userAgent = "user_agent"
         case ipAddress = "ip_address"
     }
     
-    let userAgent: String
-    let ipAddress: String
+    public let userAgent: String
+    public let ipAddress: String
 }

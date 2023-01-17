@@ -5,7 +5,7 @@
 
 import Foundation
 
-public struct RequisitionWriteRequest: Encodable {
+public struct RequisitionWriteRequest: Codable, Hashable, Equatable {
     enum CodingKeys: String, CodingKey {
         case institutionId = "institution_id"
         case redirect
@@ -36,10 +36,23 @@ public struct RequisitionWriteRequest: Encodable {
         self.accountSelection = accountSelection
         self.redirectImmediate = redirectImmediate
     }
-    
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.institutionId = try container.decode(String.self, forKey: .institutionId)
+        self.redirect = try container.decode(String.self, forKey: .redirect)
+        self.agreement = try container.decodeIfPresent(String.self, forKey: .agreement)
+        self.reference = try container.decodeIfPresent(String.self, forKey: .reference)
+        self.userLanguage = try container.decodeIfPresent(String.self, forKey: .userLanguage)
+        self.ssn = try container.decodeIfPresent(String.self, forKey: .ssn)
+        self.accountSelection = try container.decodeIfPresent(Bool.self, forKey: .accountSelection)
+        self.redirectImmediate = try container.decodeIfPresent(Bool.self, forKey: .redirect_immediate)
+    }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        
+
         try container.encode(institutionId, forKey: .institutionId)
         try container.encode(redirect, forKey: .redirect)
         try container.encodeIfPresent(agreement, forKey: .agreement)

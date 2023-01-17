@@ -5,7 +5,7 @@
 
 import Foundation
 
-public struct CreditorAccount: Codable {
+public struct CreditorAccount: Codable, Hashable, Equatable {
     enum CodingKeys: String, CodingKey {
         case id
         case name

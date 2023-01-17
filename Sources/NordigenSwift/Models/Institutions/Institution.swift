@@ -5,7 +5,7 @@
 
 import Foundation
 
-public final class Institution: Codable {
+public struct Institution: Codable, Hashable, Equatable {
     enum CodingKeys: String, CodingKey {
         case id
         case name

@@ -5,6 +5,6 @@
 
 import Foundation
 
-public enum AccountType: String, Codable {
+public enum AccountType: String, Codable, Hashable, Equatable {
     case iban = "IBAN"
 }

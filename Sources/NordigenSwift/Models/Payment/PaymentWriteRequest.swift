@@ -5,9 +5,9 @@
 
 import Foundation
 
-public struct PaymentWriteRequest: Codable {
-    public struct PeriodicPayment: Codable {
-        public enum Frequency: String, Codable {
+public struct PaymentWriteRequest: Codable, Hashable, Equatable {
+    public struct PeriodicPayment: Codable, Hashable, Equatable {
+        public enum Frequency: String, Codable, Hashable, Equatable {
             case daily = "Daily"
             case weekly = "Weekly"
             case everyTwoWeeks = "EveryTwoWeeks"
@@ -19,12 +19,12 @@ public struct PaymentWriteRequest: Codable {
             case monthlyVariable = "MonthlyVariable"
         }
         
-        public enum ExecutionRule: String, Codable {
+        public enum ExecutionRule: String, Codable, Hashable, Equatable {
             case following
             case preceding
         }
         
-        enum CodingKeys: String,CodingKey {
+        enum CodingKeys: String, CodingKey, Hashable, Equatable {
             case frequency
             case startDate = "start_date"
             case endDate = "end_date"
