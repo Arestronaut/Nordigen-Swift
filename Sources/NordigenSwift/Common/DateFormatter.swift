@@ -12,4 +12,15 @@ enum DateFormatters {
         result.dateFormat = "YYYY-MM-DD"
         return result
     }()
+
+    static let iso8601WithMilliseconds: DateFormatter = {
+        let result = DateFormatter()
+        result.calendar = .autoupdatingCurrent
+        result.locale = .autoupdatingCurrent
+        result.timeZone = .autoupdatingCurrent
+
+        result.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+
+        return result
+    }()
 }

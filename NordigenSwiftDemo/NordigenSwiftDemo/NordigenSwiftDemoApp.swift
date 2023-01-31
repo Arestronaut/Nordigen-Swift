@@ -11,6 +11,7 @@ import SwiftUI
 @main
 struct NordigenSwiftDemoApp: App {
     @AppStorage(Constants.Keys.authenticationToken) var authenticationToken: AccessToken?
+    @AppStorage(Constants.Keys.sandboxRequisition) var sandboxRequisition: Requisition?
 
     @StateObject var deepLinkHandler = DeepLinkHandler()
 
@@ -22,6 +23,9 @@ struct NordigenSwiftDemoApp: App {
         if let authenticationToken {
             nordigenClient.setAuthenticationToken(authenticationToken.access)
         }
+
+        // Clear remove sandbox requisition
+        sandboxRequisition = nil
     }
 
     var body: some Scene {
@@ -48,7 +52,3 @@ extension RawRepresentable where Self: Codable {
         return result
     }
 }
-
-extension Date: RawRepresentable {}
-extension AccessToken: RawRepresentable {}
-extension Requisition: RawRepresentable {}

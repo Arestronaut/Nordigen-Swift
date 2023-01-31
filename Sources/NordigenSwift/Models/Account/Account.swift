@@ -24,15 +24,38 @@ public struct Account: Codable, Hashable, Equatable {
         case status
         case ownerName = "owner_name"
     }
-    
+
+    /// The ID of this Account, used to refer to this account in other API calls.
     public let id: String
+
+    /// The date & time at which the account object was created.
     public let created: String
+
+    /// The date & time at which the account object was last accessed.
     public let lastAccessed: String
+
+    /// The Account IBAN
     public let iban: String
+
+    /// The ASPSP associated with this account.
     public let institutionId: String
+
+    /// The processing status of this account.
     public let status: (Status, String)?
+
+    /// The name of the account owner.
     public let ownerName: String
-    
+
+    public init(id: String, created: String, lastAccessed: String, iban: String, institutionId: String, status: (Account.Status, String)? = nil, ownerName: String) {
+        self.id = id
+        self.created = created
+        self.lastAccessed = lastAccessed
+        self.iban = iban
+        self.institutionId = institutionId
+        self.status = status
+        self.ownerName = ownerName
+    }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         

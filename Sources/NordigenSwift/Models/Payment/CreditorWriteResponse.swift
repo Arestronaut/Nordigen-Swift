@@ -35,4 +35,18 @@ public struct CreditorWriteResponse: Codable, Hashable, Equatable {
     public let agentName: String?
     public let addressStreet: String?
     public let postCode: String?
+
+    public init(id: String?, name: String, type: AccountType?, account: String, currency: String, addressCountry: AddressCountry?, institutionId: String?, agent: String?, agentName: String?, addressStreet: String?, postCode: String?) {
+        self.id = id
+        self.name = name
+        self.type = type
+        self.account = account
+        self.currency = currency
+        self.addressCountry = addressCountry
+        self.institutionId = institutionId
+        self.agent = agent
+        self.agentName = agentName
+        self.addressStreet = addressStreet
+        self.postCode = postCode
+    }
 }

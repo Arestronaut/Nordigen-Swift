@@ -1,10 +1,9 @@
 //
-//  SandboxViewModel.swift
-//  NordigenSwiftDemo
-//
-//  Created by Raoul Schwagmeier on 16.01.23.
+//  Copyright (c) Raoul Schwagmeier 2023
+//  MIT license, see LICENSE file for details
 //
 
+import Combine
 import NordigenSwift
 import SwiftUI
 
@@ -24,6 +23,9 @@ final class SandboxViewModel: ObservableObject {
     @Published var fromDate: Date = .init()
     @Published var toDate: Date = .init()
 
+    private var dismissSubject = PassthroughSubject<Void, Never>()
+    lazy var dismissPublisher: AnyPublisher<Void, Never> = dismissSubject.eraseToAnyPublisher()
+
     private let nordigenClient: NordigenClient
 
     init(nordigenClient: NordigenClient) {
@@ -31,7 +33,11 @@ final class SandboxViewModel: ObservableObject {
     }
 
     func loadAccount() async {
-        guard let sandboxRequisition, let accountId = sandboxRequisition.accounts.first else { return }
+        guard let sandboxRequisition, let accountId = sandboxRequisition.accounts.first else {
+            dismissSubject.send()
+            return
+        }
+
         isLoadingAccount = true
 
         do {

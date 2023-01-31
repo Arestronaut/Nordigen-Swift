@@ -22,5 +22,12 @@ final class HTTPRequestExecuterSpy: HTTPRequestExecuter {
         
         return (mockedData, mockedResponse)
     }
+
+    func clear() {
+        recordedRequests.removeAll()
+        mockedError = nil
+        mockedResponse = .init()
+        mockedData = .init()
+    }
 }
 

@@ -53,14 +53,47 @@ public struct PaymentWriteRequest: Codable, Hashable, Equatable {
     }
     
     // MARK: - Public properties
+
+    /// Institution ID for Payment
     public let institutionId: String
+
+    /// Payment product
     public let paymentProduct: Payment.Product
+
+    /// Instructed amount
     public let instructedAmount: MonetaryAmount
+
+    /// Registered creditor account
     public let creditorAccount: String
+
+    /// Debtor account
     public let debtorAccount: Payment.DebtorAccount
+
+    /// Redirect URL to your application after payment is done
     public let redirect: URL
+
+    /// Payment description
     public let description: String
+
+    /// Payment end to end identification
     public let customPaymentId: String
+
+    /// Payment Execution date (for periodic payments)
     public let requestedExecutionDate: Date
+
+    /// Periodic Paymen
     public let periodicPayment: PeriodicPayment
+
+    public init(institutionId: String, paymentProduct: Payment.Product, instructedAmount: MonetaryAmount, creditorAccount: String, debtorAccount: Payment.DebtorAccount, redirect: URL, description: String, customPaymentId: String, requestedExecutionDate: Date, periodicPayment: PeriodicPayment) {
+        self.institutionId = institutionId
+        self.paymentProduct = paymentProduct
+        self.instructedAmount = instructedAmount
+        self.creditorAccount = creditorAccount
+        self.debtorAccount = debtorAccount
+        self.redirect = redirect
+        self.description = description
+        self.customPaymentId = customPaymentId
+        self.requestedExecutionDate = requestedExecutionDate
+        self.periodicPayment = periodicPayment
+    }
 }

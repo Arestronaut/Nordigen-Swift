@@ -7,4 +7,8 @@ import Foundation
 
 public struct AccountDetailResponse: Codable, Hashable, Equatable {
     public let account: AccountDetail
+
+    public init(account: AccountDetail) {
+        self.account = account
+    }
 }

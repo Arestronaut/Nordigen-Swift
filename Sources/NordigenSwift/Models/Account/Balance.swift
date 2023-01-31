@@ -8,7 +8,12 @@ import Foundation
 public struct Balance: Codable, Hashable, Equatable {
     public let balanceAmount: MonetaryAmount
     public let balanceType: String
-    // TODO: Use Date
-    public let referenceDate: String
+    public let referenceDate: Date
+
+    public init(balanceAmount: MonetaryAmount, balanceType: String, referenceDate: Date) {
+        self.balanceAmount = balanceAmount
+        self.balanceType = balanceType
+        self.referenceDate = referenceDate
+    }
 }
 

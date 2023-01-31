@@ -17,4 +17,11 @@ public struct AccessToken: Codable, Hashable, Equatable {
     public var accessExpires: Int
     public var refresh: String?
     public var refreshExpires: Int?
+
+    public init(access: String, accessExpires: Int, refresh: String? = nil, refreshExpires: Int? = nil) {
+        self.access = access
+        self.accessExpires = accessExpires
+        self.refresh = refresh
+        self.refreshExpires = refreshExpires
+    }
 }

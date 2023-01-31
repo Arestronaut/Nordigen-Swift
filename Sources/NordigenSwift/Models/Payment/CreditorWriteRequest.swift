@@ -23,14 +23,45 @@ public struct CreditorWriteRequest: Codable, Hashable, Equatable {
         case postCode = "post_code"
     }
 
+    /// Creditor account name
     public let name: String
+
+    /// Creditor account type
     public let type: AccountType?
+
+    /// Creditor account identifier
     public let account: String
+
+    /// Creditor account currency
     public let currency: String
+
     public let addressCountry: AddressCountry?
+
+    /// an Institution ID for this CreditorAccount
     public let institutionId: String?
+
+    /// Creditor account BICFI Identifier
     public let agent: String?
+
+    /// Creditor account agent name
     public let agentName: String?
+
+    /// Creditor account address street
     public let addressStreet: String?
+
+    /// Creditor account address post code
     public let postCode: String?
+
+    public init(name: String, type: AccountType?, account: String, currency: String, addressCountry: AddressCountry?, institutionId: String?, agent: String?, agentName: String?, addressStreet: String?, postCode: String?) {
+        self.name = name
+        self.type = type
+        self.account = account
+        self.currency = currency
+        self.addressCountry = addressCountry
+        self.institutionId = institutionId
+        self.agent = agent
+        self.agentName = agentName
+        self.addressStreet = addressStreet
+        self.postCode = postCode
+    }
 }

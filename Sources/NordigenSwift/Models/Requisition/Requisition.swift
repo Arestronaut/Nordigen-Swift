@@ -35,63 +35,56 @@ public struct Requisition: Codable, Hashable, Equatable {
     }
     
     public let id: String
+
+    /// The date & time at which the requisition was created.
     public let created: Date?
+
+    /// redirect URL to your application after end-user authorization with ASPSP
     public let redirect: String?
+
+    /// status of this requisition
     public let status: Status
+
+    /// an Institution ID for this Requisition
     public let institutionId: String
+
+    /// EUA associated with this requisition
     public let agreement: String
+
+    /// additional ID to identify the end user
     public let reference: String
+
+    /// array of account IDs retrieved within a scope of this requisition
     public let accounts: [String]
+
+    /// A two-letter country code (ISO 639-1)
     public let userLanguage: String?
+
+    /// link to initiate authorization with Institution
     public let link: String
+
+    /// optional SSN field to verify ownership of the account
     public let ssn: String?
+
+    /// option to enable account selection view for the end user
     public let accountSelection: Bool?
+
+    /// enable redirect back to the client after account list received
     public let redirectImmediate: Bool?
-    
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        
-        id = try container.decode(String.self, forKey: .id)
-        
-        var created: Date? = nil
-        if let _created = try container.decodeIfPresent(String.self, forKey: .created) {
-            created = DateFormatters.isoDateFormatter.date(from: _created)
-        }
-        
+
+    public init(id: String, created: Date?, redirect: String?, status: Status, institutionId: String, agreement: String, reference: String, accounts: [String], userLanguage: String?, link: String, ssn: String?, accountSelection: Bool?, redirectImmediate: Bool?) {
+        self.id = id
         self.created = created
-        
-        redirect = try container.decodeIfPresent(String.self, forKey: .redirect)
-        status = try container.decode(Status.self, forKey: .status)
-        institutionId = try container.decode(String.self, forKey: .institutionId)
-        agreement = try container.decode(String.self, forKey: .agreement)
-        reference = try container.decode(String.self, forKey: .reference)
-        accounts = try container.decode([String].self, forKey: .accounts)
-        userLanguage = try container.decodeIfPresent(String.self, forKey: .userLanguage)
-        link = try container.decode(String.self, forKey: .link)
-        ssn = try container.decodeIfPresent(String.self, forKey: .ssn)
-        accountSelection = try container.decodeIfPresent(Bool.self, forKey: .accountSelection)
-        redirectImmediate = try container.decodeIfPresent(Bool.self, forKey: .redirectImmediate)
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        if let created {
-            try container.encode(DateFormatters.isoDateFormatter.string(from: created), forKey: .created)
-        } else {
-            try container.encode("", forKey: .created)
-        }
-        
-        try container.encodeIfPresent(redirect, forKey: .redirect)
-        try container.encode(status, forKey: .status)
-        try container.encode(institutionId, forKey: .institutionId)
-        try container.encode(agreement, forKey: .agreement)
-        try container.encode(reference, forKey: .reference)
-        try container.encode(accounts, forKey: .accounts)
-        try container.encodeIfPresent(userLanguage, forKey: .userLanguage)
-        try container.encode(link, forKey: .link)
-        try container.encodeIfPresent(ssn, forKey: .ssn)
-        try container.encodeIfPresent(accountSelection, forKey: .accounts)
-        try container.encodeIfPresent(redirectImmediate, forKey: .redirectImmediate)
+        self.redirect = redirect
+        self.status = status
+        self.institutionId = institutionId
+        self.agreement = agreement
+        self.reference = reference
+        self.accounts = accounts
+        self.userLanguage = userLanguage
+        self.link = link
+        self.ssn = ssn
+        self.accountSelection = accountSelection
+        self.redirectImmediate = redirectImmediate
     }
 }

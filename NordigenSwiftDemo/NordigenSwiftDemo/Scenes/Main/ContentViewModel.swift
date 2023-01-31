@@ -1,8 +1,6 @@
 //
-//  ContentViewModel.swift
-//  NordigenSwiftDemo
-//
-//  Created by Raoul Schwagmeier on 15.01.23.
+//  Copyright (c) Raoul Schwagmeier 2023
+//  MIT license, see LICENSE file for details
 //
 
 import NordigenSwift
@@ -107,7 +105,7 @@ final class ContentViewModel: ObservableObject {
 
         Task {
             do {
-                let requisition = try await nordigenClient.RequisitionsAPI.new(.init(institutionId: sandboxInstitutionId, redirect: "NordigenSwiftDemo://BankAuthenticationRedirect?id=\(sandboxInstitutionId)"))
+                let requisition = try await nordigenClient.RequisitionsAPI.new( .init(institutionId: sandboxInstitutionId, redirect: "NordigenSwiftDemo://BankAuthenticationRedirect?id=\(sandboxInstitutionId)"))
                 sandboxRequisition = requisition
                 guard let link = URL(string: requisition.link) else { return }
                 await UIApplication.shared.open(link)

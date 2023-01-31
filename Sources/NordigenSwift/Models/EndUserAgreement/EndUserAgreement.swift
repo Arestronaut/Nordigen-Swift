@@ -21,53 +21,35 @@ public struct EndUserAgreement: Codable, Hashable, Equatable {
         case accepted
         case institutionId = "institution_id"
     }
-    
+
+    /// The ID of this End User Agreement, used to refer to this end user agreement in other API calls.
     public let id: String
+
+    /// The date & time at which the end user agreement was created.
     public let created: Date
+
+    /// Maximum number of days of transaction data to retrieve.
     public let maxHistoricalDays: Int
+
+    /// Number of days from acceptance that the access can be used.
     public let accessValidForDays: Int
+
+    /// Set containing one or several values of ['balances', 'details', 'transactions']
     public let accessScope: Set<AccessScope>
+
+    /// The date & time at which the end user accepted the agreement.
     public let accepted: Date
+
+    /// an Institution ID for this EUA
     public let institutionId: String
-    
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        
-        id = try container.decode(String.self, forKey: .id)
-        
-        if let _created = DateFormatters.isoDateFormatter.date(from: try container.decode(String.self, forKey: .created)) {
-            self.created = _created
-        } else {
-            preconditionFailure("`Created` couldn't be created. It might be the wrong format.")
-        }
-        
-        maxHistoricalDays = try container.decode(Int.self, forKey: .maxHistoricalDays)
-        accessValidForDays = try container.decode(Int.self, forKey: .accessValidForDays)
-        accessScope = try container.decode(Set<AccessScope>.self, forKey: .accessScope)
-        
-        if let _accepted = DateFormatters.isoDateFormatter.date(from: try container.decode(String.self, forKey: .id)) {
-            self.accepted = _accepted
-        } else {
-            preconditionFailure("`Accepted` couldn't be created. It might be the wrong format.")
-        }
-        
-        institutionId = try container.decode(String.self, forKey: .institutionId)
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.id, forKey: .id)
-        
-        let createdString = DateFormatters.isoDateFormatter.string(from: self.created)
-        try container.encode(createdString, forKey: .created)
-        
-        try container.encode(maxHistoricalDays, forKey: .maxHistoricalDays)
-        try container.encode(accessValidForDays, forKey: .accessValidForDays)
-        try container.encode(accessScope, forKey: .accessScope)
-        
-        let acceptedString = DateFormatters.isoDateFormatter.string(from: accepted)
-        try container.encode(acceptedString, forKey: .accepted)
-        
-        try container.encode(institutionId, forKey: .institutionId)
+
+    public init(id: String, created: Date, maxHistoricalDays: Int, accessValidForDays: Int, accessScope: Set<AccessScope>, accepted: Date, institutionId: String) {
+        self.id = id
+        self.created = created
+        self.maxHistoricalDays = maxHistoricalDays
+        self.accessValidForDays = accessValidForDays
+        self.accessScope = accessScope
+        self.accepted = accepted
+        self.institutionId = institutionId
     }
 }

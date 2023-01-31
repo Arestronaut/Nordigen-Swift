@@ -21,6 +21,7 @@
 		DE90225F2974AE6400811627 /* NordigenSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DE90225E2974AE6400811627 /* NordigenSwift */; };
 		DEC63FA729754B7E00231E65 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEC63FA629754B7E00231E65 /* Localizable.strings */; };
 		DEC63FA92975516B00231E65 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC63FA82975516B00231E65 /* Loading.swift */; };
+		DEF9DF7B29847C8100DEA961 /* NordigenModels+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF9DF7A29847C8100DEA961 /* NordigenModels+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		DE90225C2974AD0200811627 /* NordigenSwift */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = NordigenSwift; path = ..; sourceTree = "<group>"; };
 		DEC63FA629754B7E00231E65 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		DEC63FA82975516B00231E65 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
+		DEF9DF7A29847C8100DEA961 /* NordigenModels+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NordigenModels+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				DE90225A2974AC2C00811627 /* Constants.swift */,
 				DE0D83ED29758F0A00B1D2C2 /* DeepLinkHandler.swift */,
 				DE0D83EF29758FB200B1D2C2 /* URL+.swift */,
+				DEF9DF7A29847C8100DEA961 /* NordigenModels+.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				DEC63FA92975516B00231E65 /* Loading.swift in Sources */,
 				DE9022582974A9C500811627 /* ContentViewModel.swift in Sources */,
 				DE90225B2974AC2C00811627 /* Constants.swift in Sources */,
+				DEF9DF7B29847C8100DEA961 /* NordigenModels+.swift in Sources */,
 				DE0D83F82975986D00B1D2C2 /* SandboxViewModel.swift in Sources */,
 				DE0D83EE29758F0A00B1D2C2 /* DeepLinkHandler.swift in Sources */,
 			);

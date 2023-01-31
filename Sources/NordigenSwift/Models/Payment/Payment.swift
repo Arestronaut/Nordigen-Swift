@@ -67,15 +67,52 @@ public struct Payment: Codable, Hashable, Equatable {
         case paymentType = "payment_type"
         case redirect
         case description
+        case customPaymentId = "custom_payment_id"
+        case creditorAccount = "creditor_account"
+        case debtorAccount = "debtor_account"
         case instructedAmount = "instructed_amount"
     }
     
     // MARK: - Public properties
     public let paymentId: String
+
+    /// Payment end to end identification
     public let paymentStatus: Status
+
+    /// Payment product
     public let paymentProduct: Product
+
+    /// Payment Type
     public let paymentType: `Type`
+
+    /// Redirect URL to your application after payment is done
     public let redirect: URL
+
+    /// Payment description
     public let description: String
+
+    /// Payment end to end identification
+    public let customPaymentId: String
+
+    /// Registered creditor account
+    public let creditorAccount: String
+
+    /// Debtor account
+    public let debtorAccount: DebtorAccount
+
+    /// Instructed amount
     public let instructedAmount: MonetaryAmount
+
+    public init(paymentId: String, paymentStatus: Status, paymentProduct: Product, paymentType: Type, redirect: URL, description: String, customPaymentId: String, creditorAccount: String, debtorAccount: DebtorAccount, instructedAmount: MonetaryAmount) {
+        self.paymentId = paymentId
+        self.paymentStatus = paymentStatus
+        self.paymentProduct = paymentProduct
+        self.paymentType = paymentType
+        self.redirect = redirect
+        self.description = description
+        self.customPaymentId = customPaymentId
+        self.creditorAccount = creditorAccount
+        self.debtorAccount = debtorAccount
+        self.instructedAmount = instructedAmount
+    }
 }

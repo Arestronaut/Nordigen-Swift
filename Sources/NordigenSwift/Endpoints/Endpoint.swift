@@ -17,6 +17,7 @@ public final class Endpoint {
         case requestFailure(StatusCodeResponse)
         case unkownRequestFailure(String)
         case underlyingError(Error)
+        case dateDecodingError(String)
     }
     
     private var baseURL: String
@@ -58,7 +59,26 @@ public final class Endpoint {
 
         switch httpResponse.statusCode {
         case 200..<300:
-            return try JSONDecoder().decode(OutputType.self, from: outputData)
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .custom({ decoder -> Date in
+                let container = try decoder.singleValueContainer()
+                let dateString = try container.decode(String.self)
+                if let date = DateFormatters.iso8601WithMilliseconds.date(from: dateString) {
+                    return date
+                }
+
+                if let date = DateFormatters.isoDateFormatter.date(from: dateString) {
+                    return date
+                }
+
+                if let date = DateFormatters.simpleDateFormatter.date(from: dateString) {
+                    return date
+                }
+
+                throw NetworkingError.dateDecodingError(dateString)
+            })
+
+            return try decoder.decode(OutputType.self, from: outputData)
         default:
             if let statusCodeResponse = try? JSONDecoder().decode(StatusCodeResponse.self, from: outputData) {
                 throw NetworkingError.requestFailure(statusCodeResponse)

@@ -21,4 +21,13 @@ public struct Institution: Codable, Hashable, Equatable {
     public let transactionTotalDays: String
     public let countries: [String]
     public let logo: String
+
+    public init(id: String, name: String, bic: String, transactionTotalDays: String, countries: [String], logo: String) {
+        self.id = id
+        self.name = name
+        self.bic = bic
+        self.transactionTotalDays = transactionTotalDays
+        self.countries = countries
+        self.logo = logo
+    }
 }

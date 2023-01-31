@@ -13,4 +13,14 @@ public struct AccountDetail: Codable, Hashable, Equatable {
     public let name: String
     public let product: String
     public let cashAccountType: String
+
+    public init(resourceId: String, lban: String, currency: String, ownerName: String, name: String, product: String, cashAccountType: String) {
+        self.resourceId = resourceId
+        self.lban = lban
+        self.currency = currency
+        self.ownerName = ownerName
+        self.name = name
+        self.product = product
+        self.cashAccountType = cashAccountType
+    }
 }

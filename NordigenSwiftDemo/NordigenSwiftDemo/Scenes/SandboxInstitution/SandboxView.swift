@@ -1,14 +1,13 @@
 //
-//  SandboxView.swift
-//  NordigenSwiftDemo
-//
-//  Created by Raoul Schwagmeier on 16.01.23.
+//  Copyright (c) Raoul Schwagmeier 2023
+//  MIT license, see LICENSE file for details
 //
 
 import NordigenSwift
 import SwiftUI
 
 struct SandboxView: View {
+    @Environment(\.presentationMode) private var presentationMode
     @StateObject var viewModel: SandboxViewModel
 
     var body: some View {
@@ -41,26 +40,24 @@ struct SandboxView: View {
                 .font(.title2)
 
             HStack {
-                VStack(alignment: .leading, spacing: 0.0) {
-                    Text("from")
-                        .font(.caption2)
-                    DatePicker("", selection: $viewModel.fromDate, displayedComponents: .date)
+                VStack(alignment: .leading) {
+                    DatePicker("From", selection: $viewModel.fromDate, displayedComponents: .date)
                         .datePickerStyle(.compact)
-                        .labelsHidden()
-                }
 
-                VStack(alignment: .leading, spacing: 0.0) {
-                    Text("to")
-                        .font(.caption2)
-                    DatePicker("", selection: $viewModel.toDate, displayedComponents: .date)
+                    DatePicker("To", selection: $viewModel.toDate, displayedComponents: .date)
                         .datePickerStyle(.compact)
-                        .labelsHidden()
                 }
 
                 Spacer()
 
-                Button("refresh") {
+                Button {
                     viewModel.loadTransactions()
+                } label: {
+                    Image(systemName: "arrow.clockwise")
+                        .foregroundColor(Color.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(6.0)
                 }
             }
 
@@ -97,6 +94,9 @@ struct SandboxView: View {
         .showLoading("sandbox_view.is_loading_account.alert.title", isLoading: $viewModel.isLoadingAccount)
         .showLoading("sandbox_view.is_loading_balances.alert.title", isLoading: $viewModel.isLoadingBalances)
         .showLoading("sandbox_view.is_loading_transactions.alert.title", isLoading: $viewModel.isLoadingTransactions)
+        .onReceive(viewModel.dismissPublisher, perform: { _ in
+            presentationMode.wrappedValue.dismiss()
+        })
         .task(priority: .background) {
             await viewModel.loadAccount()
             await viewModel.loadBalances()
@@ -123,9 +123,9 @@ struct SandboxView: View {
     private func transactionView(_ transaction: NordigenSwift.Transaction) -> some View {
         VStack(alignment: .leading, spacing: 8.0) {
             HStack {
-                Text(transaction.debtorName ?? "Debtor")
+                Text(transaction.debtorName ?? "Debtor unkown")
                 Spacer()
-                Text(transaction.bookingDate ?? "Booking date")
+                Text(transaction.bookingDate ?? Date(), format: .dateTime)
             }
 
             Text(transaction.transactionAmount.description)

@@ -7,12 +7,9 @@ import Foundation
 
 public struct EndUserAgreementWriteRequest: Codable, Hashable, Equatable {
     enum CodingKeys: String, CodingKey {
-        case id
-        case created
         case maxHistoricalDays = "max_historical_days"
         case accessValidForDays = "access_valid_for_days"
         case accessScope = "access_scope"
-        case accepted
         case institutionId = "institution_id"
     }
     
@@ -20,22 +17,11 @@ public struct EndUserAgreementWriteRequest: Codable, Hashable, Equatable {
     public let accessValidForDays: Int?
     public let accessScope: Set<EndUserAgreement.AccessScope>?
     public let institutionId: String
-    
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        
-        maxHistoricalDays = try container.decodeIfPresent(Int.self, forKey: .maxHistoricalDays)
-        accessValidForDays = try container.decodeIfPresent(Int.self, forKey: .accessValidForDays)
-        accessScope = try container.decodeIfPresent(Set<EndUserAgreement.AccessScope>.self, forKey: .accessScope)
-        institutionId = try container.decode(String.self, forKey: .institutionId)
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        
-        try container.encodeIfPresent(maxHistoricalDays, forKey: .maxHistoricalDays)
-        try container.encodeIfPresent(accessValidForDays, forKey: .accessValidForDays)
-        try container.encodeIfPresent(accessScope, forKey: .accessScope)
-        try container.encode(institutionId, forKey: .institutionId)
+
+    public init(maxHistoricalDays: Int?, accessValidForDays: Int?, accessScope: Set<EndUserAgreement.AccessScope>?, institutionId: String) {
+        self.maxHistoricalDays = maxHistoricalDays
+        self.accessValidForDays = accessValidForDays
+        self.accessScope = accessScope
+        self.institutionId = institutionId
     }
 }

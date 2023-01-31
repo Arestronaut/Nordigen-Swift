@@ -17,6 +17,13 @@ public struct StatusCodeResponse: Error, Codable, Hashable, Equatable {
     public let summary: String
     public let type: String?
     public let statusCode: Int?
+
+    public init(detail: String, summary: String, type: String?, statusCode: Int?) {
+        self.detail = detail
+        self.summary = summary
+        self.type = type
+        self.statusCode = statusCode
+    }
 }
 
 extension StatusCodeResponse: CustomStringConvertible {

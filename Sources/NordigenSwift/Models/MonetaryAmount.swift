@@ -12,4 +12,9 @@ public struct MonetaryAmount: Codable, CustomStringConvertible, Equatable, Hasha
     public var description: String {
         "\(amount)\(currency)"
     }
+
+    public init(amount: String, currency: String) {
+        self.amount = amount
+        self.currency = currency
+    }
 }

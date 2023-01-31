@@ -1,3 +1,4 @@
 # Nordigen Swift
 
-A swift package for the Nordigen API.
+A Swift package wrapper for the [Nordigen API](https://nordigen.com/en/).
+
