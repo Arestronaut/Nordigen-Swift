@@ -5,7 +5,12 @@
 
 import Foundation
 
-public final class TokenAPI {
+public protocol TokenAPIProtocol: AnyObject {
+    func new(secretId: String, secretKey: String) async throws -> AccessToken
+    func refresh(token: String) async throws -> AccessToken
+}
+
+public final class TokenAPI: TokenAPIProtocol {
     private var endpoint: Endpoint
     
     internal init(endpoint: Endpoint) {

@@ -5,7 +5,27 @@
 
 import Foundation
 
-public final class PaymentsAPI {
+public protocol PaymentsAPIProtocol: AnyObject {
+    func all(limit: Int, offset: Int) async throws -> Paginated<Payment>
+    func new(_ payload: PaymentWriteRequest) async throws
+    func get(id: String) async throws -> Payment
+    func delete(id: String) async throws -> StatusCodeResponse
+    func accounts() async throws -> [CreditorAccount]
+    func creditors(
+        account: String,
+        addressCountry: String,
+        agent: String,
+        currency: String,
+        name: String,
+        type: AccountType,
+        limit: Int,
+        offset: Int) async throws -> Paginated<CreditorAccount>
+    func newCreditor(_ payload: CreditorWriteRequest) async throws -> CreditorWriteResponse
+    func creditor(id: String) async throws -> CreditorAccount
+    func deleteCreditor(id: String) async throws
+}
+
+public final class PaymentsAPI: PaymentsAPIProtocol {
     private var endpoint: Endpoint
     
     internal init(endpoint: Endpoint) {

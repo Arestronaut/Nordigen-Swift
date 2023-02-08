@@ -5,7 +5,16 @@
 
 import Foundation
 
-public final class AccountsAPI {
+public protocol AccountsAPIProtocol: AnyObject {
+    func get(id: String) async throws -> Account
+    func balances(id: String) async throws -> BalancesResponse
+    func details(id: String) async throws -> AccountDetailResponse
+    func transactions(id: String) async throws -> TransactionsResponse
+    func transactions(id: String, from: Date, to: Date) async throws -> TransactionsResponse
+    func transactions(id: String, from: String, to: String) async throws -> TransactionsResponse
+}
+
+public final class AccountsAPI: AccountsAPIProtocol {
     private var endpoint: Endpoint
     
     internal init(endpoint: Endpoint) {

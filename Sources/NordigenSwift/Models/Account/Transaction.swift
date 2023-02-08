@@ -8,6 +8,10 @@ import Foundation
 public struct Transaction: Codable, Hashable, Equatable {
     public struct DebtorAccount: Codable, Hashable, Equatable {
         public let iban: String
+
+        public init(iban: String) {
+            self.iban = iban
+        }
     }
     
     public let transactionId: String?

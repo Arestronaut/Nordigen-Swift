@@ -20,6 +20,7 @@ struct NordigenSwiftDemoApp: App {
     init() {
         nordigenClient = NordigenClient()
 
+        authenticationToken = nil
         if let authenticationToken {
             nordigenClient.setAuthenticationToken(authenticationToken.access)
         }

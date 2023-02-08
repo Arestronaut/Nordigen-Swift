@@ -15,8 +15,4 @@ public struct TransactionsResponse: Codable, Hashable, Equatable {
 
     public var booked: [Transaction] { transactions.booked }
     public var pending: [Transaction] { transactions.pending }
-
-    public init(booked: [Transaction], pending: [Transaction]) {
-        self.transactions = .init(booked: booked, pending: pending)
-    }
 }

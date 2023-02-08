@@ -5,7 +5,15 @@
 
 import Foundation
 
-public final class AgreementsAPI {
+public protocol AgreementsAPIProtocol: AnyObject {
+    func all(limit: Int, offset: Int) async throws -> Paginated<EndUserAgreement>
+    func create(_ payload: EndUserAgreementWriteRequest) async throws -> EndUserAgreement
+    func get(id: String) async throws -> EndUserAgreement
+    func delete(id: String) async throws -> EndUserAgreement
+    func accept(id: String) async throws -> EndUserAgreementAcceptance
+}
+
+public final class AgreementsAPI: AgreementsAPIProtocol {
     private var endpoint: Endpoint
     
     internal init(endpoint: Endpoint) {

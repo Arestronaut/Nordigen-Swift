@@ -5,7 +5,14 @@
 
 import Foundation
 
-public final class RequisitionsAPI {
+public protocol RequisitionsAPIProtocol: AnyObject {
+    func new(_ payload: RequisitionWriteRequest) async throws -> Requisition
+    func all(limit: Int, offset: Int) async throws -> Paginated<Requisition>
+    func get(id: String) async throws -> Requisition
+    func delete(id: String) async throws
+}
+
+public final class RequisitionsAPI: RequisitionsAPIProtocol {
     private var endpoint: Endpoint
     
     internal init(endpoint: Endpoint) {

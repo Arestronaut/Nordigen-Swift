@@ -5,7 +5,12 @@
 
 import Foundation
 
-public final class InstitutionsAPI {
+public protocol InstitutionsAPIProtocol: AnyObject {
+    func all(country: String, paymentsEnabled: Bool) async throws -> [Institution]
+    func get(id: String) async throws -> Institution
+}
+
+public final class InstitutionsAPI: InstitutionsAPIProtocol {
     private var endpoint: Endpoint
     
     internal init(endpoint: Endpoint) {
