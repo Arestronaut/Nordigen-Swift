@@ -6,19 +6,20 @@
 import Foundation
 
 enum NumberFormatters {
-    static let decimalNumberFormatter: NumberFormatter = {
+    static let decimalNumberFormatterDotSeparated: NumberFormatter = {
         let result = NumberFormatter()
+        result.numberStyle = .decimal
         result.generatesDecimalNumbers = true
-        result.decimalSeparator = ","
-        result.minimumFractionDigits = 2
-        result.maximumFractionDigits = 2
+        result.decimalSeparator = "."
+
         return result
     }()
 
-    static let currencyFormatter: NumberFormatter = {
+    static let decimalNumberFormatterCommaSeparated: NumberFormatter = {
         let result = NumberFormatter()
-        result.numberStyle = .currency
-        result.maximumFractionDigits = 2
+        result.numberStyle = .decimal
+        result.generatesDecimalNumbers = true
+        result.decimalSeparator = ","
 
         return result
     }()

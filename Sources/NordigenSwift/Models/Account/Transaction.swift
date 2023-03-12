@@ -21,9 +21,9 @@ public struct Transaction: Codable, Hashable, Equatable {
     public let bankTransactionCode: String?
     public let bookingDate: Date?
     public let valueDate: String
-    public let remittanceInformationUnstructured: String
+    public let remittanceInformationUnstructured: String?
 
-    public init(transactionId: String?, debtorName: String?, debtorAccount: DebtorAccount?, transactionAmount: MonetaryAmount, bankTransactionCode: String?, bookingDate: Date?, valueDate: String, remittanceInformationUnstructured: String) {
+    public init(transactionId: String?, debtorName: String?, debtorAccount: DebtorAccount?, transactionAmount: MonetaryAmount, bankTransactionCode: String?, bookingDate: Date?, valueDate: String, remittanceInformationUnstructured: String?) {
         self.transactionId = transactionId
         self.debtorName = debtorName
         self.debtorAccount = debtorAccount

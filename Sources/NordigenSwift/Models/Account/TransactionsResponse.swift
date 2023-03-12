@@ -6,13 +6,22 @@
 import Foundation
 
 public struct TransactionsResponse: Codable, Hashable, Equatable {
-    struct BookedAndPendingTransactions: Codable, Hashable, Equatable {
-        let booked: [Transaction]
-        let pending: [Transaction]
+    public struct BookedAndPendingTransactions: Codable, Hashable, Equatable {
+        public let booked: [Transaction]
+        public let pending: [Transaction]
+
+        public init(booked: [Transaction], pending: [Transaction]) {
+            self.booked = booked
+            self.pending = pending
+        }
     }
 
     private let transactions: BookedAndPendingTransactions
 
     public var booked: [Transaction] { transactions.booked }
     public var pending: [Transaction] { transactions.pending }
+
+    public init(transactions: BookedAndPendingTransactions) {
+        self.transactions = transactions
+    }
 }

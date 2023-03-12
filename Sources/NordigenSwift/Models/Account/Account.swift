@@ -32,7 +32,7 @@ public struct Account: Codable, Hashable, Equatable {
     public let created: String
 
     /// The date & time at which the account object was last accessed.
-    public let lastAccessed: String
+    public let lastAccessed: String?
 
     /// The Account IBAN
     public let iban: String
@@ -46,7 +46,7 @@ public struct Account: Codable, Hashable, Equatable {
     /// The name of the account owner.
     public let ownerName: String
 
-    public init(id: String, created: String, lastAccessed: String, iban: String, institutionId: String, status: (Account.Status, String)? = nil, ownerName: String) {
+    public init(id: String, created: String, lastAccessed: String?, iban: String, institutionId: String, status: (Account.Status, String)? = nil, ownerName: String) {
         self.id = id
         self.created = created
         self.lastAccessed = lastAccessed
@@ -61,7 +61,7 @@ public struct Account: Codable, Hashable, Equatable {
         
         self.id = try container.decode(String.self, forKey: .id)
         self.created = try container.decode(String.self, forKey: .created)
-        self.lastAccessed = try container.decode(String.self, forKey: .lastAccessed)
+        self.lastAccessed = try container.decodeIfPresent(String.self, forKey: .lastAccessed)
         self.iban = try container.decode(String.self, forKey: .iban)
         self.institutionId = try container.decode(String.self, forKey: .institutionId)
         self.ownerName = try container.decode(String.self, forKey: .ownerName)

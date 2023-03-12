@@ -9,29 +9,40 @@ public struct MonetaryAmount: Codable, Equatable, Hashable {
     public let amount: String
     public let currency: String
 
-    public var decimalAmount: Decimal? {
-        NumberFormatters.decimalNumberFormatter.number(from: amount)?.decimalValue
-    }
-
-    public var formatted: String {
-        NumberFormatters.currencyFormatter.string(for: decimalAmount)!
-    }
+    public var decimalValue: Decimal
 
     public init(amount: String, currency: String) {
         self.amount = amount
         self.currency = currency
+
+        if let nsDecimal = NumberFormatters.decimalNumberFormatterDotSeparated.number(from: amount) as? NSDecimalNumber {
+            self.decimalValue = nsDecimal.decimalValue
+        } else if let nsDecimal = NumberFormatters.decimalNumberFormatterCommaSeparated.number(from: amount) as? NSDecimalNumber {
+            self.decimalValue = nsDecimal.decimalValue
+        } else {
+            preconditionFailure("Amount(\(amount)) is not a valid decimal number")
+        }
     }
+}
+
+extension MonetaryAmount: CustomStringConvertible {
+    public var description: String {
+        decimalValue.formatted(.currency(code: currency))
+    }
+
 }
 
 extension MonetaryAmount: ExpressibleByFloatLiteral {
     public init(floatLiteral value: FloatLiteralType) {
-        guard let amount = NumberFormatters.decimalNumberFormatter.string(for: value)
-//            let currency = Locale.autoupdatingCurrent.currencySymbol
-        else {
-            fatalError("Value \(value) not expressible as Monetary amount")
+        let amount = String(format: "%f", value)
+        var currencyCode: String = "EUR"
+        if #available(iOS 16.0, *) {
+            currencyCode = Locale.autoupdatingCurrent.currency?.identifier ?? currencyCode
+        } else {
+            currencyCode = Locale.autoupdatingCurrent.currencyCode ?? currencyCode
         }
 
-        self.init(amount: amount, currency: "EUR")
+        self.init(amount: amount, currency: currencyCode)
     }
 
     public init(decimalValue value: Decimal) {
@@ -43,95 +54,50 @@ extension MonetaryAmount: ExpressibleByFloatLiteral {
 extension MonetaryAmount: Comparable {
     // MARK: Compare
     public static func < (lhs: MonetaryAmount, rhs: MonetaryAmount) -> Bool {
-        guard let lhsAmount = lhs.decimalAmount, let rhsAmount = rhs.decimalAmount else {
-            preconditionFailure("Can't compare invalid MonetaryAmounts")
-        }
-
-        return lhsAmount < rhsAmount
+        lhs.decimalValue < rhs.decimalValue
     }
 
     public static func < (lhs: MonetaryAmount, rhs: Int) -> Bool {
-        guard let lhsAmount = lhs.decimalAmount else {
-            preconditionFailure("Can't compare invalid MonetaryAmounts")
-        }
-
-        return lhsAmount < Decimal(rhs)
+        lhs.decimalValue < Decimal(rhs)
     }
 
     public static func < (lhs: Int, rhs: MonetaryAmount) -> Bool {
-        guard let rhsAmount = rhs.decimalAmount else {
-            preconditionFailure("Can't compare invalid MonetaryAmounts")
-        }
-
-        return Decimal(lhs) < rhsAmount
+        Decimal(lhs) < rhs.decimalValue
     }
 
     public static func > (lhs: MonetaryAmount, rhs: MonetaryAmount) -> Bool {
-        guard let lhsAmount = lhs.decimalAmount, let rhsAmount = rhs.decimalAmount else {
-            preconditionFailure("Can't compare invalid MonetaryAmounts")
-        }
-
-        return lhsAmount > rhsAmount
+        lhs.decimalValue > rhs.decimalValue
     }
 
     public static func > (lhs: MonetaryAmount, rhs: Int) -> Bool {
-        guard let lhsAmount = lhs.decimalAmount else {
-            preconditionFailure("Can't compare invalid MonetaryAmounts")
-        }
-
-        return lhsAmount > Decimal(rhs)
+        lhs.decimalValue > Decimal(rhs)
     }
 
     public static func > (lhs: Int, rhs: MonetaryAmount) -> Bool {
-        guard let rhsAmount = rhs.decimalAmount else {
-            preconditionFailure("Can't compare invalid MonetaryAmounts")
-        }
-
-        return Decimal(lhs) > rhsAmount
+        Decimal(lhs) > rhs.decimalValue
     }
 
     public static func == (lhs: MonetaryAmount, rhs: MonetaryAmount) -> Bool {
-        guard let lhsAmount = lhs.decimalAmount, let rhsAmount = rhs.decimalAmount else {
-            preconditionFailure("Can't compare invalid MonetaryAmounts")
-        }
-
-        return lhsAmount == rhsAmount
+        lhs.decimalValue == rhs.decimalValue
     }
 
     public static func == (lhs: MonetaryAmount, rhs: Int) -> Bool {
-        guard let lhsAmount = lhs.decimalAmount else {
-            preconditionFailure("Can't compare invalid MonetaryAmounts")
-        }
-
-        return lhsAmount == Decimal(rhs)
+        lhs.decimalValue == Decimal(rhs)
     }
 
     public static func == (lhs: Int, rhs: MonetaryAmount) -> Bool {
-        guard let rhsAmount = rhs.decimalAmount else {
-            preconditionFailure("Can't compare invalid MonetaryAmounts")
-        }
-
-        return Decimal(lhs) == rhsAmount
+        Decimal(lhs) == rhs.decimalValue
     }
 
     private static func execute(operation: (Decimal, Decimal) -> Decimal,
                                 lhs: MonetaryAmount,
                                 rhs: MonetaryAmount) -> MonetaryAmount {
-        guard
-            let lhsAmount = lhs.decimalAmount,
-            let rhsAmount = rhs.decimalAmount,
-            lhs.currency == rhs.currency
-        else {
-            preconditionFailure("Can't operate on invalid MonetaryAmounts")
+        guard lhs.currency == rhs.currency else {
+            preconditionFailure("Can't operate on different currencies")
         }
 
-        let result = operation(lhsAmount, rhsAmount)
-
-        guard let decimalString = NumberFormatters.decimalNumberFormatter.string(for: result) else {
-            preconditionFailure("Can't turn into decimal")
-        }
-
-        return .init(amount: decimalString, currency: lhs.currency)
+        let result = operation(lhs.decimalValue, rhs.decimalValue)
+        return .init(amount: result.formatted(.number), currency: lhs.currency)
     }
 
     private static func execute(operation: (Decimal, Decimal) -> Decimal,
@@ -143,7 +109,7 @@ extension MonetaryAmount: Comparable {
     private static func execute(operation: (Decimal, Decimal) -> Decimal,
                                 lhs: Int,
                                 rhs: MonetaryAmount) -> MonetaryAmount {
-        execute(operation: operation, lhs: MonetaryAmount(amount: lhs.description, currency: rhs.currency), rhs: rhs)
+        execute(operation: operation, lhs: MonetaryAmount(amount: lhs.formatted(.number), currency: rhs.currency), rhs: rhs)
     }
 
     // MARK: Add
