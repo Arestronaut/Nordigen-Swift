@@ -66,8 +66,8 @@ final class ContentViewModel: ObservableObject {
             authenticationTokenCreated = Date()
 
             authenticationToken = try await nordigenClient.TokenAPI.new(
-                secretId: <#secretId#>,
-                secretKey: <#secretKey#>
+                secretId: <#SecretID#>,
+                secretKey: <#SecretKey#>
             )
 
 
