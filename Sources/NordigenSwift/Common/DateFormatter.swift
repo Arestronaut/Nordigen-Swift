@@ -9,7 +9,7 @@ enum DateFormatters {
     static let isoDateFormatter = ISO8601DateFormatter()
     static let simpleDateFormatter: DateFormatter = {
         let result = DateFormatter()
-        result.dateFormat = "YYYY-MM-DD"
+        result.dateFormat = "yyyy-MM-dd"
         return result
     }()
 

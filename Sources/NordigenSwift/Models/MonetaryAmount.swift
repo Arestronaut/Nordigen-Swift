@@ -8,9 +8,8 @@ import Foundation
 public struct MonetaryAmount: Codable, Equatable, Hashable {
     public let amount: String
     public let currency: String
-
-    public var decimalValue: Decimal
-
+    public var decimalValue: Decimal?
+    
     public init(amount: String, currency: String) {
         self.amount = amount
         self.currency = currency
@@ -23,13 +22,6 @@ public struct MonetaryAmount: Codable, Equatable, Hashable {
             preconditionFailure("Amount(\(amount)) is not a valid decimal number")
         }
     }
-}
-
-extension MonetaryAmount: CustomStringConvertible {
-    public var description: String {
-        decimalValue.formatted(.currency(code: currency))
-    }
-
 }
 
 extension MonetaryAmount: ExpressibleByFloatLiteral {
@@ -54,27 +46,27 @@ extension MonetaryAmount: ExpressibleByFloatLiteral {
 extension MonetaryAmount: Comparable {
     // MARK: Compare
     public static func < (lhs: MonetaryAmount, rhs: MonetaryAmount) -> Bool {
-        lhs.decimalValue < rhs.decimalValue
+        lhs.decimalValue ?? 0 < rhs.decimalValue ?? 0
     }
 
     public static func < (lhs: MonetaryAmount, rhs: Int) -> Bool {
-        lhs.decimalValue < Decimal(rhs)
+        lhs.decimalValue ?? 0 < Decimal(rhs)
     }
 
     public static func < (lhs: Int, rhs: MonetaryAmount) -> Bool {
-        Decimal(lhs) < rhs.decimalValue
+        Decimal(lhs) < rhs.decimalValue ?? 0
     }
 
     public static func > (lhs: MonetaryAmount, rhs: MonetaryAmount) -> Bool {
-        lhs.decimalValue > rhs.decimalValue
+        lhs.decimalValue ?? 0 > rhs.decimalValue ?? 0
     }
 
     public static func > (lhs: MonetaryAmount, rhs: Int) -> Bool {
-        lhs.decimalValue > Decimal(rhs)
+        lhs.decimalValue ?? 0 > Decimal(rhs)
     }
 
     public static func > (lhs: Int, rhs: MonetaryAmount) -> Bool {
-        Decimal(lhs) > rhs.decimalValue
+        Decimal(lhs) > rhs.decimalValue ?? 0
     }
 
     public static func == (lhs: MonetaryAmount, rhs: MonetaryAmount) -> Bool {
@@ -96,7 +88,7 @@ extension MonetaryAmount: Comparable {
             preconditionFailure("Can't operate on different currencies")
         }
 
-        let result = operation(lhs.decimalValue, rhs.decimalValue)
+        let result = operation(lhs.decimalValue ?? 0, rhs.decimalValue ?? 0)
         return .init(amount: result.formatted(.number), currency: lhs.currency)
     }
 

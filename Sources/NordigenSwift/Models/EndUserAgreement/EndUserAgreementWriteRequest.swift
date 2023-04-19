@@ -13,15 +13,18 @@ public struct EndUserAgreementWriteRequest: Codable, Hashable, Equatable {
         case institutionId = "institution_id"
     }
     
+    public let institutionId: String
     public let maxHistoricalDays: Int?
     public let accessValidForDays: Int?
     public let accessScope: Set<EndUserAgreement.AccessScope>?
-    public let institutionId: String
 
-    public init(maxHistoricalDays: Int?, accessValidForDays: Int?, accessScope: Set<EndUserAgreement.AccessScope>?, institutionId: String) {
+    public init(institutionId: String,
+                maxHistoricalDays: Int? = nil,
+                accessValidForDays: Int? = nil,
+                accessScope: Set<EndUserAgreement.AccessScope>? = nil) {
+        self.institutionId = institutionId
         self.maxHistoricalDays = maxHistoricalDays
         self.accessValidForDays = accessValidForDays
         self.accessScope = accessScope
-        self.institutionId = institutionId
     }
 }

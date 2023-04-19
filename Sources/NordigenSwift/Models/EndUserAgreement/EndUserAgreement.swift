@@ -38,7 +38,7 @@ public struct EndUserAgreement: Codable, Hashable, Equatable {
     public let accessScope: Set<AccessScope>
 
     /// The date & time at which the end user accepted the agreement.
-    public let accepted: Date
+    public let accepted: Date?
 
     /// an Institution ID for this EUA
     public let institutionId: String

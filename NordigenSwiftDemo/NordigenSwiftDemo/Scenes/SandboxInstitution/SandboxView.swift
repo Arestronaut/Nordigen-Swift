@@ -28,7 +28,7 @@ struct SandboxView: View {
 
             if let balances = viewModel.balances, !balances.isEmpty {
                 ForEach(balances, id: \.self) { balance in
-                    Text("Amount: ").font(.title3) + Text(balance.balanceAmount.description)
+                    Text("Amount: ").font(.title3) + Text(balance.balanceAmount.amount)
                 }
             } else {
                 Text("Not provided")
@@ -123,12 +123,12 @@ struct SandboxView: View {
     private func transactionView(_ transaction: NordigenSwift.Transaction) -> some View {
         VStack(alignment: .leading, spacing: 8.0) {
             HStack {
-                Text(transaction.debtorName ?? "Debtor unkown")
+                Text(transaction.creditorName ?? transaction.debtorName ?? "Unknown")
                 Spacer()
-                Text(transaction.bookingDate ?? Date(), format: .dateTime)
+                Text(transaction.valueDate)
             }
 
-            Text(transaction.transactionAmount.description)
+            Text(transaction.transactionAmount.amount)
         }
         .frame(maxWidth: .infinity)
         .padding()

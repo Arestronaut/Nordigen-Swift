@@ -51,7 +51,7 @@ final class ContentViewModel: ObservableObject {
                 return await authenticateIfNecessary()
             }
 
-            let accessExpires = TimeInterval(authenticationToken!.accessExpires * 1_000)
+            let accessExpires = TimeInterval(authenticationToken!.accessExpires)
             if Date(timeInterval: accessExpires, since: authenticationTokenCreated) <= Date() {
                 authenticationToken = nil
                 return await authenticateIfNecessary()
@@ -89,7 +89,9 @@ final class ContentViewModel: ObservableObject {
 
         isLoadingInstitutions = true
         do {
-            allInstitutions = try await nordigenClient.InstitutionsAPI.all(country: "DE", paymentsEnabled: false)
+            allInstitutions = try await nordigenClient.InstitutionsAPI.all(
+                country: Locale.current.language.region?.identifier ?? "DE",
+                paymentsEnabled: false)
 
             isLoadingInstitutions = false
         } catch {
@@ -98,17 +100,29 @@ final class ContentViewModel: ObservableObject {
         }
     }
 
-    func connectToSandboxInstitution() {
+    func connectToInstitution(id: String? = nil) {
         isConnectingToSandbox = true
 
-        let sandboxInstitutionId = "SANDBOXFINANCE_SFIN0000"
+        let institutionId = id ?? "SANDBOXFINANCE_SFIN0000"
 
         Task {
             do {
-                let requisition = try await nordigenClient.RequisitionsAPI.new( .init(institutionId: sandboxInstitutionId, redirect: "NordigenSwiftDemo://BankAuthenticationRedirect?id=\(sandboxInstitutionId)"))
+                let payload = EndUserAgreementWriteRequest(
+                    institutionId: institutionId,
+                    accessScope: [
+                        .details,
+                        .balances,
+                        .transactions
+                    ])
+                let result = try await self.nordigenClient.AgreementsAPI.create(payload)
+                
+                let requisition = try await nordigenClient.RequisitionsAPI.new(
+                    .init(institutionId: institutionId,
+                          redirect: "NordigenSwiftDemo://BankAuthenticationRedirect?id=\(institutionId)",
+                          agreement: result.id))
                 sandboxRequisition = requisition
                 guard let link = URL(string: requisition.link) else { return }
-                await UIApplication.shared.open(link)
+                _ = await UIApplication.shared.open(link)
             } catch {
                 print(error)
                 isConnectingToSandbox = false
