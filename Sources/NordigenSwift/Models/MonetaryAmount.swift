@@ -8,19 +8,19 @@ import Foundation
 public struct MonetaryAmount: Codable, Equatable, Hashable {
     public let amount: String
     public let currency: String
-    public var decimalValue: Decimal?
+    public var decimalValue: Decimal {
+        if let nsDecimal = NumberFormatters.decimalNumberFormatterDotSeparated.number(from: amount) as? NSDecimalNumber {
+            return nsDecimal.decimalValue
+        } else if let nsDecimal = NumberFormatters.decimalNumberFormatterCommaSeparated.number(from: amount) as? NSDecimalNumber {
+            return nsDecimal.decimalValue
+        } else {
+            preconditionFailure("Amount(\(amount)) is not a valid decimal number")
+        }
+    }
     
     public init(amount: String, currency: String) {
         self.amount = amount
         self.currency = currency
-
-        if let nsDecimal = NumberFormatters.decimalNumberFormatterDotSeparated.number(from: amount) as? NSDecimalNumber {
-            self.decimalValue = nsDecimal.decimalValue
-        } else if let nsDecimal = NumberFormatters.decimalNumberFormatterCommaSeparated.number(from: amount) as? NSDecimalNumber {
-            self.decimalValue = nsDecimal.decimalValue
-        } else {
-            preconditionFailure("Amount(\(amount)) is not a valid decimal number")
-        }
     }
 }
 
@@ -46,27 +46,27 @@ extension MonetaryAmount: ExpressibleByFloatLiteral {
 extension MonetaryAmount: Comparable {
     // MARK: Compare
     public static func < (lhs: MonetaryAmount, rhs: MonetaryAmount) -> Bool {
-        lhs.decimalValue ?? 0 < rhs.decimalValue ?? 0
+        lhs.decimalValue < rhs.decimalValue
     }
 
     public static func < (lhs: MonetaryAmount, rhs: Int) -> Bool {
-        lhs.decimalValue ?? 0 < Decimal(rhs)
+        lhs.decimalValue < Decimal(rhs)
     }
 
     public static func < (lhs: Int, rhs: MonetaryAmount) -> Bool {
-        Decimal(lhs) < rhs.decimalValue ?? 0
+        Decimal(lhs) < rhs.decimalValue
     }
 
     public static func > (lhs: MonetaryAmount, rhs: MonetaryAmount) -> Bool {
-        lhs.decimalValue ?? 0 > rhs.decimalValue ?? 0
+        lhs.decimalValue > rhs.decimalValue
     }
 
     public static func > (lhs: MonetaryAmount, rhs: Int) -> Bool {
-        lhs.decimalValue ?? 0 > Decimal(rhs)
+        lhs.decimalValue > Decimal(rhs)
     }
 
     public static func > (lhs: Int, rhs: MonetaryAmount) -> Bool {
-        Decimal(lhs) > rhs.decimalValue ?? 0
+        Decimal(lhs) > rhs.decimalValue
     }
 
     public static func == (lhs: MonetaryAmount, rhs: MonetaryAmount) -> Bool {
@@ -88,7 +88,7 @@ extension MonetaryAmount: Comparable {
             preconditionFailure("Can't operate on different currencies")
         }
 
-        let result = operation(lhs.decimalValue ?? 0, rhs.decimalValue ?? 0)
+        let result = operation(lhs.decimalValue, rhs.decimalValue)
         return .init(amount: result.formatted(.number), currency: lhs.currency)
     }
 
@@ -124,7 +124,6 @@ extension MonetaryAmount: Comparable {
     public static func + (lhs: Int, rhs: MonetaryAmount) -> MonetaryAmount {
         execute(operation: +, lhs: lhs, rhs: rhs)
     }
-
 
     // MARK: Substract
     public static func - (lhs: MonetaryAmount, rhs: MonetaryAmount) -> MonetaryAmount {
