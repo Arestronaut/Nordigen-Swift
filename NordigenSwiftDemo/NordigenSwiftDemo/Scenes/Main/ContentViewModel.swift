@@ -107,19 +107,9 @@ final class ContentViewModel: ObservableObject {
 
         Task {
             do {
-                let payload = EndUserAgreementWriteRequest(
-                    institutionId: institutionId,
-                    accessScope: [
-                        .details,
-                        .balances,
-                        .transactions
-                    ])
-                let result = try await self.nordigenClient.AgreementsAPI.create(payload)
-                
                 let requisition = try await nordigenClient.RequisitionsAPI.new(
                     .init(institutionId: institutionId,
-                          redirect: "NordigenSwiftDemo://BankAuthenticationRedirect?id=\(institutionId)",
-                          agreement: result.id))
+                          redirect: "NordigenSwiftDemo://BankAuthenticationRedirect?id=\(institutionId)"))
                 sandboxRequisition = requisition
                 guard let link = URL(string: requisition.link) else { return }
                 _ = await UIApplication.shared.open(link)

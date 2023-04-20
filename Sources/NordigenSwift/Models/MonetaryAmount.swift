@@ -6,21 +6,46 @@
 import Foundation
 
 public struct MonetaryAmount: Codable, Equatable, Hashable {
+    enum CodingKeys: CodingKey {
+        case amount
+        case currency
+        case decimalValue
+    }
+    
     public let amount: String
     public let currency: String
-    public var decimalValue: Decimal {
-        if let nsDecimal = NumberFormatters.decimalNumberFormatterDotSeparated.number(from: amount) as? NSDecimalNumber {
-            return nsDecimal.decimalValue
-        } else if let nsDecimal = NumberFormatters.decimalNumberFormatterCommaSeparated.number(from: amount) as? NSDecimalNumber {
-            return nsDecimal.decimalValue
-        } else {
-            preconditionFailure("Amount(\(amount)) is not a valid decimal number")
-        }
-    }
+    
+    public private(set) var decimalValue: Decimal!
     
     public init(amount: String, currency: String) {
         self.amount = amount
         self.currency = currency
+        
+        createDecimalValue()
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.amount = try container.decode(String.self, forKey: .amount)
+        self.currency = try container.decode(String.self, forKey: .currency)
+        
+        createDecimalValue()
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.amount, forKey: .amount)
+        try container.encode(self.currency, forKey: .currency)
+    }
+    
+    private mutating func createDecimalValue() {
+        if let nsDecimal = NumberFormatters.decimalNumberFormatterDotSeparated.number(from: amount) as? NSDecimalNumber {
+            decimalValue = nsDecimal.decimalValue
+        } else if let nsDecimal = NumberFormatters.decimalNumberFormatterCommaSeparated.number(from: amount) as? NSDecimalNumber {
+            decimalValue = nsDecimal.decimalValue
+        } else {
+            preconditionFailure("Amount(\(amount)) is not a valid decimal number")
+        }
     }
 }
 
