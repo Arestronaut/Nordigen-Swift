@@ -20,7 +20,9 @@ public struct Transaction: Codable, Hashable, Equatable {
     public let transactionAmount: MonetaryAmount
     public let bankTransactionCode: String?
     public let bookingDate: Date?
-    public let valueDate: String
+    public let bookingDateTime: Date?
+    public let valueDate: Date?
+    public let valueDateTime: Date?
     public let remittanceInformationUnstructured: String?
 
     public init(transactionId: String?,
@@ -31,7 +33,9 @@ public struct Transaction: Codable, Hashable, Equatable {
                 bankTransactionCode: String?,
                 merchantCategoryCode: String?,
                 bookingDate: Date?,
-                valueDate: String,
+                bookingDateTime: Date?,
+                valueDate: Date?,
+                valueDateTime: Date?,
                 remittanceInformationUnstructured: String?) {
         self.transactionId = transactionId
         self.creditorName = creditorName
@@ -40,7 +44,9 @@ public struct Transaction: Codable, Hashable, Equatable {
         self.transactionAmount = transactionAmount
         self.bankTransactionCode = bankTransactionCode
         self.bookingDate = bookingDate
+        self.bookingDateTime = bookingDateTime
         self.valueDate = valueDate
+        self.valueDateTime = valueDateTime
         self.remittanceInformationUnstructured = remittanceInformationUnstructured
     }
 }

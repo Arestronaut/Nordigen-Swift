@@ -49,6 +49,12 @@ public struct MonetaryAmount: Codable, Equatable, Hashable {
     }
 }
 
+extension MonetaryAmount: CustomStringConvertible {
+    public var description: String {
+        decimalValue.formatted(.currency(code: currency))
+    }
+}
+
 extension MonetaryAmount: ExpressibleByFloatLiteral {
     public init(floatLiteral value: FloatLiteralType) {
         let amount = String(format: "%f", value)
