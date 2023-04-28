@@ -9,7 +9,6 @@ public struct MonetaryAmount: Codable, Equatable, Hashable {
     enum CodingKeys: CodingKey {
         case amount
         case currency
-        case decimalValue
     }
     
     public let amount: String
