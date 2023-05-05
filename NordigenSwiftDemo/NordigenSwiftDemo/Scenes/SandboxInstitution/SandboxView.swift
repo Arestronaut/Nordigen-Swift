@@ -26,7 +26,8 @@ struct SandboxView: View {
             Text("Balances")
                 .font(.title2)
 
-            if let balances = viewModel.balances, !balances.isEmpty {
+            let balances = viewModel.balances
+            if !balances.isEmpty {
                 ForEach(balances, id: \.self) { balance in
                     Text("Amount: ").font(.title3) + Text(balance.balanceAmount.description)
                 }
