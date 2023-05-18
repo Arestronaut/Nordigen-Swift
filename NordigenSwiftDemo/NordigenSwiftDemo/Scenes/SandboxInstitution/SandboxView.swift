@@ -9,6 +9,12 @@ import SwiftUI
 struct SandboxView: View {
     @Environment(\.presentationMode) private var presentationMode
     @StateObject var viewModel: SandboxViewModel
+    
+    let dateFormatter: DateFormatter = {
+        let result = DateFormatter()
+        result.setLocalizedDateFormatFromTemplate("yyyy-MM-dd hh:mm")
+        return result
+    }()
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16.0) {
@@ -124,9 +130,16 @@ struct SandboxView: View {
     private func transactionView(_ transaction: NordigenSwift.Transaction) -> some View {
         VStack(alignment: .leading, spacing: 8.0) {
             HStack {
-                Text(transaction.debtorName ?? "Debtor unkown")
+                Text(transaction.creditorName ??
+                     transaction.debtorName ??
+                     transaction.remittanceInformationUnstructured ??
+                     "Unknown")
                 Spacer()
-                Text(transaction.bookingDate ?? Date(), format: .dateTime)
+                if let valueDate = transaction.valueDate {
+                    Text(self.dateFormatter.string(from: valueDate))
+                } else {
+                    Text("Unknown")
+                }
             }
 
             Text(transaction.transactionAmount.description)

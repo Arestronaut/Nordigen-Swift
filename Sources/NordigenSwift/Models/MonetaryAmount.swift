@@ -6,19 +6,42 @@
 import Foundation
 
 public struct MonetaryAmount: Codable, Equatable, Hashable {
+    enum CodingKeys: CodingKey {
+        case amount
+        case currency
+    }
+    
     public let amount: String
     public let currency: String
-
-    public var decimalValue: Decimal
-
+    
+    public private(set) var decimalValue: Decimal!
+    
     public init(amount: String, currency: String) {
         self.amount = amount
         self.currency = currency
-
+        
+        createDecimalValue()
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.amount = try container.decode(String.self, forKey: .amount)
+        self.currency = try container.decode(String.self, forKey: .currency)
+        
+        createDecimalValue()
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.amount, forKey: .amount)
+        try container.encode(self.currency, forKey: .currency)
+    }
+    
+    private mutating func createDecimalValue() {
         if let nsDecimal = NumberFormatters.decimalNumberFormatterDotSeparated.number(from: amount) as? NSDecimalNumber {
-            self.decimalValue = nsDecimal.decimalValue
+            decimalValue = nsDecimal.decimalValue
         } else if let nsDecimal = NumberFormatters.decimalNumberFormatterCommaSeparated.number(from: amount) as? NSDecimalNumber {
-            self.decimalValue = nsDecimal.decimalValue
+            decimalValue = nsDecimal.decimalValue
         } else {
             preconditionFailure("Amount(\(amount)) is not a valid decimal number")
         }
@@ -29,7 +52,6 @@ extension MonetaryAmount: CustomStringConvertible {
     public var description: String {
         decimalValue.formatted(.currency(code: currency))
     }
-
 }
 
 extension MonetaryAmount: ExpressibleByFloatLiteral {
@@ -132,7 +154,6 @@ extension MonetaryAmount: Comparable {
     public static func + (lhs: Int, rhs: MonetaryAmount) -> MonetaryAmount {
         execute(operation: +, lhs: lhs, rhs: rhs)
     }
-
 
     // MARK: Substract
     public static func - (lhs: MonetaryAmount, rhs: MonetaryAmount) -> MonetaryAmount {

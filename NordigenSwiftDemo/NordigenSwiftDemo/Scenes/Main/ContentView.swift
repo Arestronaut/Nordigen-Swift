@@ -22,7 +22,7 @@ struct ContentView: View {
                         .font(.caption)
                     } else {
                         Button("Connect to sandbox") {
-                            viewModel.connectToSandboxInstitution()
+                            viewModel.connectToInstitution()
                         }
                         .foregroundColor(Color.black)
                         .font(.caption)
@@ -61,7 +61,7 @@ struct ContentView: View {
                         }
                         .listRowSeparator(.hidden)
                         .onTapGesture {
-                            viewModel.connectToSandboxInstitution()
+                            viewModel.connectToInstitution(id: insitution.id)
                         }
                 }
             }

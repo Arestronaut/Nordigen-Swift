@@ -73,8 +73,8 @@ public final class AccountsAPI: AccountsAPIProtocol {
     public func transactions(id: String, from: String, to: String) async throws -> TransactionsResponse {
         guard !id.isEmpty else { throw NordigenError.preconditionError(message: "Provided `id` is empty") }
         guard UUID(uuidString: id) != nil else { throw NordigenError.preconditionError(message: "Provided `id` is not a valid UUID") }
-        guard DateFormatters.simpleDateFormatter.date(from: from) != nil else { throw NordigenError.preconditionError(message: "`from` is not correctly formatted: Use Format YYYY-MM-DD") }
-        guard DateFormatters.simpleDateFormatter.date(from: to) != nil else { throw NordigenError.preconditionError(message: "`to` is not correctly formatted: Use Format YYYY-MM-DD") }
+        guard DateFormatters.simpleDateFormatter.date(from: from) != nil else { throw NordigenError.preconditionError(message: "`from` is not correctly formatted: Use Format yyyy-MM-dd") }
+        guard DateFormatters.simpleDateFormatter.date(from: to) != nil else { throw NordigenError.preconditionError(message: "`to` is not correctly formatted: Use Format yyyy-MM-dd") }
         
         return try await endpoint.get(
             path: "accounts/\(id)/transactions/",
